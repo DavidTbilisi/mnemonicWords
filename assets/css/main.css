@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "BPG LE Studio 02", sans-serif;
+  font-family: "BPG Banner SuperSquare Caps", sans-serif;
+}
+
+:root {
+  font-size: 10px;
+  --color1: #fee3b4;
+  --color2: #fec0a2;
+  --color3: #eba194;
+  --color4: #dac6ca;
+  --color5: #3d8d9a;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.flex input {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  font-size: 2rem;
+  padding: 10px;
+}
+
+body {
+  font-size: 1.8rem;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color5);
+  font-weight: bold;
+  text-shadow: 1px 1px 0px #0d1a29;
+}
+
+p {
+  line-height: 5rem;
+}
+
+[contentEditable='true'] {
+  background: rgba(0, 255, 0, 0.164);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 2rem;
+}
+
+table thead td {
+  background: var(--color5);
+  color: var(--color1);
+  text-shadow: 2px 1px 11px #0d1a29, 1px 1px 1px #0d1a29;
+}
+
+table td {
+  border: 1px solid gray;
+  padding: 1.5rem;
+}
+
+table tr:nth-child(even) {
+  background: var(--color1);
+}
+
+.text-block {
+  width: 95%;
+  margin: 5rem auto;
+}
+
+.text-block .title {
+  color: var(--color5);
+  text-align: center;
+  margin: 3rem auto;
+}
+/*# sourceMappingURL=main.css.map */
