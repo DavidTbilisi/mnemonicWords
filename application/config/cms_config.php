@@ -8,3 +8,5 @@
 
 
 $config['site_name'] = 'Learn words';
+$config['author_name'] = 'GetSite.ge';
+$config['author_url'] = 'http://getsite.ge/';
