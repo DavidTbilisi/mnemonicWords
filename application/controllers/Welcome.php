@@ -7,6 +7,11 @@ class Welcome extends Front_Controller{
 	{
 //		$this->output->enable_profiler(TRUE);
 		$a = $this->db->query('select * from table1');
+		$users = $this->db->query('select * from users');
+
+		$this->load->model('users_m');
+		clog($this->users_m->get(2));
+
 
 		$this->load->view('incs/header',["data"=>$this->data]);
 		$this->load->view('read', ['a'=>$a->result()]);
