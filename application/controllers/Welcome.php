@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends Front_Controller{
 
 	public function index()
 	{
 //		$this->output->enable_profiler(TRUE);
 		$a = $this->db->query('select * from table1');
 
-		$this->load->view('incs/header');
+		$this->load->view('incs/header',["data"=>$this->data]);
 		$this->load->view('read', ['a'=>$a->result()]);
 		$this->load->view('incs/footer');
 	}

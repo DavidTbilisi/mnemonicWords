@@ -1,6 +1,28 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Autoload Custom Controllers
+|--------------------------------------------------------------------------
+|
+*/
+function __autoload($class) {
+	if (substr($class,0,3) !== 'CI_') {
+		if (file_exists($file = APPPATH . 'libraries/' . $class . '.php')) {
+//			echo $file; die;
+			include $file;
+		}
+	}
+}
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
