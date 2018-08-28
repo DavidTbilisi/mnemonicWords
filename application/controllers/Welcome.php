@@ -5,13 +5,13 @@ class Welcome extends Front_Controller{
 
 	public function index()
 	{
-//		$this->output->enable_profiler(TRUE);
+		$this->output->enable_profiler(TRUE);
 		$a = $this->db->query('select * from table1');
-		$users = $this->db->query('select * from users');
+		// $users = $this->db->query('select * from users');
 
 		$this->load->model('users_m');
-		clog($this->users_m->get(2));
-
+		$this->users_m->save([ 'name' => 'david', 'password' => '123', 'email' => 'david@geomail.ge',],3);
+		clog($this->users_m->get());
 
 		$this->load->view('incs/header',["data"=>$this->data]);
 		$this->load->view('read', ['a'=>$a->result()]);

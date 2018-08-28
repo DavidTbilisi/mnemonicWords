@@ -31,24 +31,47 @@ protected $timestamps = FALSE;
 			$method = 'result';
 		}
 
-
-		if($this->db->order_by($this->order_by)) {
-			$this->db->order_by($this->order_by);
+		if( !count($this->db->order_by( $this->order_by )) ) {
+			$this->db->order_by( $this->order_by );
 		}
-		return $this->db->get($this->table_name)->$method();
+		clog($method);
+		return $this->db->get( $this->table_name )->$method();
 	}
 
-	public function get_by( $where, $single=null ) {
-		$this->db-where($where);
+	public function get_by( $where, $single = null ) {
+		$this->db->where($where);
 		return $this->get(null, $single);
 	}
 
-	public function save( $id=null ) {
-
+	public function save( $data, $id = null ) {
+		// insert
+		if ($id === null) {
+			!isset($data[$this->primary_key]) || $data[$this->primary_key] = null;
+			$this->db->set($data);
+			$this->db->insert($this->table_name);
+			$id = $this->db->insert_id();
+		}
+		// update
+		else {
+			$filter = $this->primary_filters;
+			$id = $filter($id);
+			$this->db->set($data);
+			$this->db->where($this->primary_key, $id);
+			$this->db->update($this->table_name);
+		}
+		return $id;
 	}
 
-	public function delete(  ) {
+	public function delete( $id ) {
+		$filter = $this->primary_filters;
+		$id = $filter($id);
+		if (!id) {
+			return false;
+		}
 
+		$this->db->where($this->primary_key, $id);
+		$this->db->limit(1);
+		$this->db->delete($this->table_name);
 	}
 
 
