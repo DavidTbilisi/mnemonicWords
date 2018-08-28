@@ -3,56 +3,59 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends Front_Controller{
 
+
+	/**
+	 * Welcome constructor.
+	 */
+	public function  __construct() {
+		parent::__construct();
+		$this->load->model('users_m');
+		$this->load->model('words_m');
+	}
+
 	public function index()
 	{
 		$this->output->enable_profiler(TRUE);
-		$a = $this->db->query('select * from table1');
-		// $users = $this->db->query('select * from users');
-
-		$this->load->model('users_m');
-		$this->users_m->save([ 'name' => 'david', 'password' => '123', 'email' => 'david@geomail.ge',],3);
-		clog($this->users_m->get());
-
+		$a = $this->words_m->get();
 		$this->load->view('incs/header',["data"=>$this->data]);
-		$this->load->view('read', ['a'=>$a->result()]);
+		$this->load->view('read', ['a'=>$a]);
 		$this->load->view('incs/footer');
 	}
 
 
 
 	public function save () {
-		if ($this->input->post('save')) {
+		$post=$this->input->post();
+		if ($post['save']) {
+
 			$data = array(
-				'newWord'      => $this->input->post("newWord"),
-				'assoc'        => $this->input->post("assoc"),
-				'connection'   => $this->input->post("connection"),
-				'meaning'      => $this->input->post("meaning")
+				'newWord'      => $post["newWord"],
+				'assoc'        => $post["assoc"],
+				'connection'   => $post["connection"],
+				'meaning'      => $post["meaning"]
 			);
-			$this->db->insert('table1', $data);
+			$this->words_m->save($data);
 			echo 'saved';
 			redirect(site_url());
 		}
 	}
 
 	public function edit( $id ) {
+		$post=$this->input->post();
+			$data = array(
+				'newWord'      => $post["newWord"],
+				'assoc'        => $post["assoc"],
+				'connection'   => $post["connection"],
+				'meaning'      => $post["meaning"]
+			);
 
-		$newWord    =   $this->input->post("newWord");
-		$connection =   $this->input->post("connection");
-		$meaning    =   $this->input->post("meaning");
-		$assoc      =   $this->input->post("assoc");
+		$this->words_m->save($data, $id);
 
-		$sql = "update table1 set 
-				`newWord`='$newWord',
-				`connection`='$connection',
-				`meaning`='$meaning',
-				`assoc`='$assoc'
-				 WHERE `table1`.`id` =".$id;
-		$this->db->query($sql);
 		return 'ok';
 	}
 
 	public function delete( $id ) {
-		$this->db->query('delete from table1 WHERE `table1`.`id` ='.$id);
+		$this->words_m->delete($id);
 		redirect(site_url());
 	}
 

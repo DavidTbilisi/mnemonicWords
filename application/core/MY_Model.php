@@ -34,7 +34,7 @@ protected $timestamps = FALSE;
 		if( !count($this->db->order_by( $this->order_by )) ) {
 			$this->db->order_by( $this->order_by );
 		}
-		clog($method);
+		// clog($method);
 		return $this->db->get( $this->table_name )->$method();
 	}
 
