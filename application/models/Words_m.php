@@ -10,7 +10,7 @@ class Words_m extends MY_Model {
 	protected $table_name = 'table1';
 	protected $primary_key = 'id';
 	protected $primary_filters = 'intval';
-	protected $order_by = 'id';
+	protected $order_by = 'id desc';
 	protected $rules = [];
 	protected $timestamps = FALSE;
 }

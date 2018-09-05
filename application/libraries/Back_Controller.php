@@ -9,6 +9,6 @@
 class Back_Controller extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
-		echo __CLASS__;
+		// echo __CLASS__;
 	}
 }

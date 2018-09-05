@@ -18,7 +18,7 @@ class Welcome extends Front_Controller{
 		$this->output->enable_profiler(TRUE);
 		$a = $this->words_m->get();
 		$this->load->view('incs/header',["data"=>$this->data]);
-		$this->load->view('read', ['a'=>$a]);
+		$this->load->view('read', ['words'=>$a]);
 		$this->load->view('incs/footer');
 	}
 
