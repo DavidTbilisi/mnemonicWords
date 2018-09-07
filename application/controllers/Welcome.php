@@ -15,6 +15,11 @@ class Welcome extends Front_Controller{
 
 	public function index()
 	{
+
+
+//		$words = csvToJson('assets/Phrasebook');
+//		print_r($words);
+//		die;
 		$this->output->enable_profiler(TRUE);
 		$a = $this->words_m->get();
 		$this->load->view('incs/header',["data"=>$this->data]);
@@ -24,17 +29,21 @@ class Welcome extends Front_Controller{
 
 
 
-	public function save () {
+	public function save ($id = null) {
+
 		$post=$this->input->post();
 		if ($post['save']) {
-
 			$data = array(
 				'newWord'      => $post["newWord"],
 				'assoc'        => $post["assoc"],
 				'connection'   => $post["connection"],
 				'meaning'      => $post["meaning"]
 			);
-			$this->words_m->save($data);
+			if ($id != null) {
+				$this->words_m->save($data, $id);
+			} else {
+				$this->words_m->save($data);
+			}
 			echo 'saved';
 			redirect(site_url());
 		}

@@ -28,7 +28,7 @@
             <div class="meaning editable col"> <?php echo $word->meaning ?></div>
 
             <div class="col-1">
-                <a class="edit" href="<?php echo site_url() . '/edit/' . $word->id ?>">
+                <a class="edit" href="<?php echo site_url() . '/save/' . $word->id ?>">
                     <i class="fa fa-pencil-square" aria-hidden="true"></i>
                 </a></div>
             <div class="col-1">

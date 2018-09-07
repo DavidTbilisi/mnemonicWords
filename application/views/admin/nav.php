@@ -16,10 +16,10 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="<?= site_url('login')?>">Login <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" aria-disabled="disabled" href="<?= site_url('migrate')?>">Migrate</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Pricing</a>
