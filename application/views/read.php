@@ -9,10 +9,10 @@
         <div class="words">
         <div class="row">
             <div class="col-1">#</div>
-            <div class="col">ახალი სიტყვა</div>
+            <div class="col d-none d-md-block">ახალი სიტყვა</div>
             <div class="col d-none d-md-block">ასოციაცია</div>
-            <div class="col-4  d-none d-md-block">კავშირი</div>
-            <div class="col">მნიშვნელობა</div>
+            <div class="col  ">კავშირი</div>
+            <div class="col d-none d-md-block">მნიშვნელობა</div>
             <div class="col-1"> <i class="fa fa-pencil-square" aria-hidden="true"></i> </div>
             <div class="col-1"> <i class="fa fa-trash-o" aria-hidden="true"></i> </div>
 
@@ -22,10 +22,10 @@
         <div class="row" data-id="<?php echo $word->id ?>">
             <div class="col-1"> <?php echo ++$index ?></div>
             <div class="id editable d-none"><?php echo $word->id ?></div>
-            <div class="newWord editable col "> <?php echo $word->newWord ?></div>
+            <div class="newWord editable col d-none d-md-block"> <?php echo $word->newWord ?></div>
             <div class="assoc editable col d-none d-md-block"> <?php echo $word->assoc ?></div>
-            <div class="connection editable col-4  d-none d-md-block"> <?php echo $word->connection ?></div>
-            <div class="meaning editable col"> <?php echo $word->meaning ?></div>
+            <div class="connection editable col "> <?php echo $word->connection ?></div>
+            <div class="meaning editable col d-none d-md-block"> <?php echo $word->meaning ?></div>
 
             <div class="col-1">
                 <a class="edit" href="<?php echo site_url() . '/save/' . $word->id ?>">

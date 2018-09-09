@@ -47,6 +47,23 @@ var david = (function () {
             });
         }
 
+
+        $('div.editable').on('mouseup',function() {
+            var text = getSelectedText();
+
+            if (text!=''){
+                console.log(text)
+            }
+        });
+
+        function getSelectedText() {
+            if ( window.getSelection() ) {
+                return window.getSelection().toString();
+            } else if (document.selection) {
+                return document.selection.createRange().text;
+            }
+            return '';
+        }
         v.edit.on('click',function (e) {
           var obj1 = toggleEditable(e);
             edit(obj1);
