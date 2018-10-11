@@ -39,6 +39,10 @@ class Migration_Create_words extends CI_Migration {
 				'type' => 'VARCHAR',
 				'constraint' => '100',
 			),
+			'user_id' => array(
+				'type' => 'INT',
+				'constraint' => '10',
+			),
 		));
 		$this->dbforge->add_key('id', TRUE);
 		$this->dbforge->create_table('words');

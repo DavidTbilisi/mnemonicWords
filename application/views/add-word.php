@@ -8,7 +8,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">დაამატეთ სიტყვა</h5>
+				<h3 class="modal-title" id="exampleModalLabel">დაამატეთ სიტყვა</h3>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -19,11 +19,31 @@
 				<div class="add-words">
 					<form action="<?php echo site_url() . '/save' ?>" method="post">
 						<div class="flex">
-							<input placeholder="ახალი სიტყვა" name="newWord" type="text">
-							<input placeholder="ასოციაცია" name="assoc" type="text">
-							<input placeholder="კავშირი" name="connection" type="text">
-							<input placeholder="მნიშვნელობა" name="meaning" type="text">
-							<input type="submit" name="save" value="დამახსოვრება">
+
+							<input class="form-control form-control-lg"
+                                   placeholder="ახალი სიტყვა"
+                                   name="newWord"
+                                   type="text">
+
+							<input class="form-control form-control-lg"
+                                   placeholder="ასოციაცია"
+                                   name="assoc"
+                                   type="text">
+
+							<input class="form-control form-control-lg"
+                                   placeholder="კავშირი"
+                                   name="connection"
+                                   type="text">
+
+							<input class="form-control form-control-lg"
+                                   placeholder="მნიშვნელობა"
+                                   name="meaning"
+                                   type="text">
+
+							<input class="btn btn-primary mb-2"
+                                   type="submit"
+                                   name="save"
+                                   value="დამახსოვრება">
 						</div>
 					</form>
 				</div>

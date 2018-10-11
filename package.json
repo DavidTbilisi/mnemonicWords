@@ -1,0 +1,38 @@
+{
+  "name": "mnemonicwords",
+  "version": "1.0.0",
+  "description": "learn new Words via assocciation",
+  "main": "index.js",
+  "dependencies": {
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.4",
+    "babel-preset-es2015": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "hammerjs": "^2.0.8",
+    "jquery": "^3.3.1",
+    "mini-css-extract-plugin": "^0.4.3",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidTbilisi/mnemonicWords.git"
+  },
+  "author": "david chincharashvili",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DavidTbilisi/mnemonicWords/issues"
+  },
+  "homepage": "https://github.com/DavidTbilisi/mnemonicWords#readme"
+}

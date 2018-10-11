@@ -7,7 +7,7 @@
  * Time: 10:56 AM
  */
 class Words_m extends MY_Model {
-	protected $table_name = 'table1';
+	protected $table_name = 'words';
 	protected $primary_key = 'id';
 	protected $primary_filters = 'intval';
 	protected $order_by = 'id desc';

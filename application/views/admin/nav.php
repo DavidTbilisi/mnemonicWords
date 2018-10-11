@@ -1,10 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
 
     <a class="navbar-brand" href="#">
         <img src="https://cdn.dribbble.com/users/25514/screenshots/1873731/movers-logo-design-branding-identity-ramotion.png"
              width="30" alt="">
         <span>Learn Words</span>
     </a>
+
+    <div class="form-inline">
+        <input class="form-control " type="text" placeholder="Search">
+    </div>
 
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -13,16 +17,34 @@
     </button>
 
 
+    
+
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav navbar-right">
+
+            <?php if ($isLogged) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= site_url('logout')?>">Logout <span class="sr-only">(current)</span></a>
+                </li>
+
+            <?php else:  ?>
+
             <li class="nav-item">
                 <a class="nav-link" href="<?= site_url('login')?>">Login <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="<?= site_url('register')?>">Register <span class="sr-only">(current)</span></a>
+            </li>
+
+            <?php endif;  ?>
+
+
+           
+         <!--   <li class="nav-item">
                 <a class="nav-link" aria-disabled="disabled" href="<?= site_url('migrate')?>">Migrate</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+                <a class="nav-link" href="<?/*= site_url('import') */?>">import words</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -34,7 +56,7 @@
                     <a class="dropdown-item" href="#">Another action</a>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-            </li>
+            </li>-->
         </ul>
     </div>
 

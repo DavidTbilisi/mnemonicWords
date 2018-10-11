@@ -19,7 +19,7 @@ class Migration extends Back_Controller {
 
 	public function index(  ) {
 		$this->load->library('migration');
-//		$this->migration->version(5);
+//		$this->migration->version(1);
 		if ($this->migration->current() === FALSE)
 		{
 			show_error($this->migration->error_string());

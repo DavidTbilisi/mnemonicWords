@@ -6,6 +6,8 @@
  * Time: 11:03 AM
  */
 
+define('HOME', $_SERVER['DOCUMENT_ROOT'].'/mnemonicWords');
+
 
 function clog($data, $context="PHP: "){
 		echo '<script>';
@@ -13,7 +15,14 @@ function clog($data, $context="PHP: "){
 		echo '</script>';
 }
 
-
+function dd ($data){
+	$info = <<<DOC
+<pre>
+print_r($data);
+</pre>
+DOC;
+die ($info);
+}
 
 function csvToJson($filename,$isobj = null){
 	$fh = fopen("{$filename}.csv", "r");
@@ -32,7 +41,6 @@ function csvToJson($filename,$isobj = null){
 		return json_encode($csvData, JSON_UNESCAPED_UNICODE );
 	} else{
 		return json_encode($csvData, JSON_FORCE_OBJECT |JSON_UNESCAPED_UNICODE );
-
 
 	}
 

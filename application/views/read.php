@@ -1,47 +1,62 @@
 <div class="row">
-    <div class="col"><?php $this->load->view('admin/nav'); ?></div>
+    <div class="col"><?php $this->load->view( 'admin/nav' ); ?></div>
 </div>
+<hr>
+<?php $this->load->view( 'add-word' ) ?>
 
 <div class="row">
     <div class="col">
 
 
-        <div class="words">
-        <div class="row">
-            <div class="col-1">#</div>
-            <div class="col d-none d-md-block">ახალი სიტყვა</div>
-            <div class="col d-none d-md-block">ასოციაცია</div>
-            <div class="col  ">კავშირი</div>
-            <div class="col d-none d-md-block">მნიშვნელობა</div>
-            <div class="col-1"> <i class="fa fa-pencil-square" aria-hidden="true"></i> </div>
-            <div class="col-1"> <i class="fa fa-trash-o" aria-hidden="true"></i> </div>
-
-        </div>
-	    <?php foreach ( $words as $index => $word ) : ?>
-
-        <div class="row" data-id="<?php echo $word->id ?>">
-            <div class="col-1"> <?php echo ++$index ?></div>
-            <div class="id editable d-none"><?php echo $word->id ?></div>
-            <div class="newWord editable col d-none d-md-block"> <?php echo $word->newWord ?></div>
-            <div class="assoc editable col d-none d-md-block"> <?php echo $word->assoc ?></div>
-            <div class="connection editable col "> <?php echo $word->connection ?></div>
-            <div class="meaning editable col d-none d-md-block"> <?php echo $word->meaning ?></div>
-
-            <div class="col-1">
-                <a class="edit" href="<?php echo site_url() . '/save/' . $word->id ?>">
-                    <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                </a></div>
-            <div class="col-1">
-                <a class="delete" href="<?php echo site_url() . '/delete/' . $word->id ?>">
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                </a>
+        <div class="words-mobile">
+            <hr>
+            <div class="row">
+                <div class="col-3 hv-center">
+                    <div class="circle hv-center">
+                        #
+                    </div>
+                </div>
+                <div class="col-9">
+                    <li class="col-12"> სიტყვა</li>
+                    <li class="col-12"> ასოციაცია</li>
+                    <li class="col-12"> კავშირი</li>
+                    <li class="col-12"> მნიშვნელობა</li>
+                </div>
             </div>
+            <hr>
+			<?php foreach ( $words as $index => $word ) : ?>
+                <div class="row">
+                    <div class="col-3 hv-center">
+                        <div class="circle hv-center">
+							<?php echo ++ $index ?>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <ul>
+                            <li> <?php echo $word->newWord ?> </li>
+                            <li> <?php echo $word->assoc ?> </li>
+                            <li> <?php echo $word->connection ?> </li>
+                            <li> <?php echo $word->meaning ?> </li>
+                        </ul>
+                    </div>
+                    <div class="covered" data-id="<?php echo $word->id ?>">
+                        <a
+                            class="edit-word"
+                            data-toggle="modal"
+                            data-target="#exampleModal"
+                            href="<?php echo site_url() . '/save/' . $word->id ?>"
+                        >
+                            <i class="icon-edit-sign icon-2x"></i>
+                        </a>
 
-        </div>
-	    <?php endforeach; ?>
+                        <a class="delete-word" href="<?php echo site_url() . '/delete/' . $word->id ?>">
+                            <i class="icon-trash icon-2x"></i>
+                        </a>
+                    </div>
+                </div>
 
+			<?php endforeach; ?>
         </div>
-<?php $this->load->view('add-word')?>
 
 
         <div class="instruction">
