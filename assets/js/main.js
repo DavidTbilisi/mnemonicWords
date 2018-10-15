@@ -37,12 +37,14 @@ global.david = (function () {
 
         function makeEditBtns() {
             "use strict";
-            $(document).find('ul').hammer().bind("panleft panright", function (e) {
+            $(document).find('ul').hammer().bind("swipeleft swiperight", function (e) {
                 let element = dom.nthParent(this, 2);
-                // console.log(e.type);
-                if (e.type === 'panleft') {
+                console.log(e.gesture.center, e.gesture.distance);
+
+
+                if (e.type === 'swipeleft' && e.gesture.distance > 30) {
                     $(element).find('.covered').addClass('revield');
-                } else if (e.type === 'panright') {
+                } else if (e.type === 'swiperight' && e.gesture.distance > 30) {
                     $(element).find('.covered').removeClass('revield');
                 } else {
                     console.log(e.type)

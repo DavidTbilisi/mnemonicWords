@@ -1,3 +1,5 @@
+<?php $this->load->helper('array'); ?>
+
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -15,7 +17,7 @@
     <link rel="stylesheet" href="//cdn.web-fonts.ge/fonts/bpg-banner-supersquare-caps/css/bpg-banner-supersquare-caps.min.css">
 	<link rel="stylesheet" href="<?php print_r(base_url('assets/css/main.css'));?>
 ">
-	<title><?php print_r($data['site_name'])?></title>
+	<title><?php print_r( element('site_name',$data, config_item('site_name'))  )?></title>
 </head>
 <body>
 
