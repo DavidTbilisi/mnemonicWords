@@ -17,26 +17,32 @@
                     </div>
                 </div>
                 <div class="col-9">
-                    <li class="col-12"> სიტყვა</li>
-                    <li class="col-12"> ასოციაცია</li>
-                    <li class="col-12"> კავშირი</li>
-                    <li class="col-12"> მნიშვნელობა</li>
+                    <li class="col-12"> სიტყვა      </li>
+                    <li class="col-12"> ასოციაცია   </li>
+                    <li class="col-12"> კავშირი     </li>
+                    <li class="col-12"> მნიშვნელობა </li>
                 </div>
             </div>
             <hr>
-			<?php foreach ( $words as $index => $word ) : ?>
+
+	        <?php
+            if (count($words) > 0 ) :
+
+            foreach ( $words as $index => $word ) :
+                ?>
                 <div class="row">
                     <div class="col-3 hv-center">
                         <div class="circle hv-center">
-							<?php echo ++ $index ?>
+
+							<?php  echo isset($start)?  ++$start:++$index;?>
                         </div>
                     </div>
                     <div class="col">
                         <ul>
-                            <li> <?php echo $word->newWord ?> </li>
-                            <li> <?php echo $word->assoc ?> </li>
-                            <li> <?php echo $word->connection ?> </li>
-                            <li> <?php echo $word->meaning ?> </li>
+                            <li> <?= $word->newWord ?>      </li>
+                            <li> <?= $word->assoc ?>        </li>
+                            <li> <?= $word->connection ?>   </li>
+                            <li> <?= $word->meaning ?>      </li>
                         </ul>
                     </div>
                     <div class="covered" data-id="<?php echo $word->id ?>">
@@ -55,25 +61,18 @@
                     </div>
                 </div>
 
-			<?php endforeach; ?>
+			<?php
+            endforeach;
+			else:
+                echo "<h1>ასეთი სიტყვა ვერ მოიძებნა</h1>";
+			endif;
+            ?>
+        </div>
+        <div class="load_more">
+            <buttom class="btn btn-primary">Load More</buttom>
         </div>
 
-
-        <div class="instruction">
-
-            <div class="text-block">
-                <h1 class="title">უცხო სიტყვების სწავლის ასოციაციიური მეთოდი</h1>
-                <p><b>სიტყვების ასოციაციური დამახსოვრებით მეთოდი შედგება 4 შემადგენლისგან</b></p>
-                <ul>
-                    <li>ახალი სიტყვისგან</li>
-                    <li>ახალ სიტყვასთან დაკავშირებული საგანი/სიტყვა რომელიც პირველი ამოტივტივდება თავში ახალი სიტყვის
-                        გაგნებისთანავე
-                    </li>
-                    <li>თავად სიტყვის მნიშვნელობა მშობლიურ ენაზე</li>
-                    <li> ახალი სიტყვის ასოციაციის დაკავშირება მშობლიური სიტყვის მნიშვნელობასთან</li>
-                </ul>
-            </div>
-        </div>
+<?php $this->load->view('instruction')  ?>
 
     </div>
 </div>

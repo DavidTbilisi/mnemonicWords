@@ -35,12 +35,34 @@ waitFor(el, callback) {
 
 
     getSelectedText() {
-    if (window.getSelection()) {
-        return window.getSelection().toString();
-    } else if (document.selection) {
-        return document.selection.createRange().text;
+        if (window.getSelection()) {
+            return window.getSelection().toString();
+        } else if (document.selection) {
+            return document.selection.createRange().text;
+        }
+        return '';
     }
-    return '';
-}
+
+    jkscroll(jump = 100, scroll='on'){
+        if(scroll !== 'off'){
+            let position = window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
+            window.addEventListener('keyup', function (e) {
+                if (e.keyCode === 74){
+                    window.scrollTo({
+                        top: (position+=jump),
+                        behavior: "smooth"
+                    });
+                } else if (e.keyCode === 75){
+                    window.scrollTo({
+                        top: (position-=jump),
+                        behavior: "smooth"
+                    });
+                }
+
+            })
+
+
+        }
+    }
 
 }

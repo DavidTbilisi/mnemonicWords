@@ -8,45 +8,56 @@ require('./hammerJquery');
 import {Ajax} from './Ajax';
 import {Dom} from './dom';
 import {Url} from './url';
-let url = new Url('mnemonicWords/index.php');
 let dom = new Dom();
+dom.jkscroll(200);
+
+// setting up host;
+let url;
+let bool = location.href.search('localhost') > -1;
+if (bool) {
+    url = new Url('mnemonicWords/index.php');
+} else {
+    url = new Url('learnwords/index.php');
+
+}
+
+
 global.david = (function () {
     let view = (function () {
 
         return {
-            editWord: $('.edit-word'),
-            classEditable: 'editable',
-            openNav: $('.open-nav span'),
-            closeNav: $('.closebtn'),
-            sideNav: $('.sidenav'),
-            modal: $('#exampleModal'),
-            search: $('nav input[type=text]'),
+            editWord        : '.edit-word',
+            loadMore        : '.load_more',
+            modal           : '#exampleModal',
+            search          : 'nav input[type=text]',
         }
     })();
 
     let octopus = (function (v) {
 
-
-        function edit(obj) {
-            console.log(obj);
-            $.post('index.php/edit/' + obj.id, obj).done(function (d) {
-                console.log(d);
+        function makeEditBtns() {
+            "use strict";
+            $(document).find('ul').hammer().bind("panleft panright", function (e) {
+                let element = dom.nthParent(this, 2);
+                // console.log(e.type);
+                if (e.type === 'panleft') {
+                    $(element).find('.covered').addClass('revield');
+                } else if (e.type === 'panright') {
+                    $(element).find('.covered').removeClass('revield');
+                } else {
+                    console.log(e.type)
+                }
             });
         }
 
-
-        function searchResult(data) {
-              $('.words-mobile').replaceWith( $(data).find('.words-mobile') )
-        }
-
-        $(v.editWord).on('click', function (e) {
-            e.preventDefault();
+        function showEditWordModal(e) {
+            "use strict";
             let target = e.target;
             let id = $(dom.nthParent(target, 2)[1]).data('id');
-
-            let path = `${url.home()}/welcome/wordsJson/${id}`;
+            console.log(id);
             let actionPath = `${url.home()}/save/${id}`;
-            let formAction = dom.nthParent(v.modal[0], 1)[0];
+            let formAction = $(v.modal).find('form')[0];
+            let path = `${url.home()}/welcome/wordsJson/${id}`;
 
             let ajax = new Ajax({url: path});
 
@@ -60,35 +71,94 @@ global.david = (function () {
                 $(v.modal).find('input[name=connection]').val(word.connection);
                 $(v.modal).find('input[name=meaning]').val(word.meaning);
             }).catch(err => console.log(err))
+        }
 
-        });
-
-        $('ul').hammer().bind("panleft panright", function (e) {
-            let element = dom.nthParent(this, 2);
-            // d.l(element, e.type, e.gesture.center.y);
-            if (e.type == 'panleft') {
-                $(element).find('.covered').addClass('revield');
-            } else if (e.type == 'panright') {
-                $(element).find('.covered').removeClass('revield');
+        function showSearchResult(data, action = 'replaceWith') {
+            if (action === "replaceWith") {
+                $('.words-mobile').replaceWith($(data).find('.words-mobile'))
+            } else if (action === "append") {
+                let rows = $(data).find('.words-mobile').children('.row');
+                $('.words-mobile').append(rows.slice(1,rows.length));
             }
-        });
+            makeEditBtns();
+        }
 
-        v.search.on('keyup', function () {
+
+        let limit = 10, start = 10;
+
+        function loadMore() {
+
             let ajax = new Ajax({
-                url: `${url.home()}/welcome/searchResult/`,
-                data: {search: v.search.val()},
-                method: "post"
+                url: `${url.home()}/`,
+                method: 'post',
+                data: {
+                    start: start,
+                    limit: limit
+                }
             });
-            ajax.ok.then(d => {
-                searchResult(d)
+
+            ajax.ok.then((data) => {
+                "use strict";
+                start += limit;
+                showSearchResult(data, 'append');
 
             })
-                .catch(err => console.log(err))
+
+        }
+
+
+        function update() {
+            "use strict";
+            $(document).ready(function () {
+
+                makeEditBtns();
+
+                $(document).find('.edit-word').on('click', function (e) {
+                    e.preventDefault();
+                    showEditWordModal(e);
+                });
+            })
+
+
+        }
+
+        function init() {
+            "use strict";
+            makeEditBtns();
+        }
+
+
+        $(document).on('click', v.editWord, function (e) {
+            e.preventDefault();
+            showEditWordModal(e);
+        });
+
+
+        init();
+
+        $(document).on('keyup',v.search, function () {
+
+            let ajax = new Ajax({
+                url: `${url.home()}/welcome/searchResult/`,
+                data: {search: $(v.search).val()},
+                method: "post"
+            });
+
+
+            ajax.ok.then(d => {
+                showSearchResult(d)
+            }).catch(err => console.log(err))
 
         });
+
+
+        $(document).on('click', v.loadMore, function () {
+            loadMore();
+        });
+
 
         return {dom, Ajax}
     })(view);
 
     return {view, octopus, Ajax}
-})()
+})();

@@ -1,234 +1,177 @@
 * {
-	margin: 0;
-	padding: 0;
-	font-family: "BPG LE Studio 02", sans-serif;
-	font-family: "BPG Banner SuperSquare Caps", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "BPG LE Studio 02", sans-serif;
+  font-family: "BPG Banner SuperSquare Caps", sans-serif;
 }
 
-$color1:#fee3b4;
-$color2:#fec0a2;
-$color3:#eba194;
-$color4:#dac6ca;
-$color5:#32639d;
+$color1: #fee3b4;
+$color2: #fec0a2;
+$color3: #eba194;
+$color4: #dac6ca;
+$color5: #32639d;
 
 :root {
-	font-size: 10px;
-	--color1: #fee3b4;
-	--color2: #fec0a2;
-	--color3: #eba194;
-	--color4: #dac6ca;
-	--color5: #32639d;
+  font-size: 10px;
+  --color1: #fee3b4;
+  --color2: #fec0a2;
+  --color3: #eba194;
+  --color4: #dac6ca;
+  --color5: #32639d;
 }
 
 body {
-	font-size: 1.8rem;
+  font-size: 1.8rem;
 }
 
 a,
 a:hover {
-	text-decoration: none;
+  text-decoration: none;
 }
-[contenteditable="true"] {
-	background: rgba(0, 255, 0, 0.164);
-}
+
 .add-words {
-	.flex {
-		display: flex;
-		flex-wrap: wrap;
+  .flex {
+    display: flex;
+    flex-wrap: wrap;
 
-		input {
-			flex-grow: 1;
-			font-size: 2rem;
-			padding: 10px;
-		}
-	}
+    input {
+      flex-grow: 1;
+      font-size: 2rem;
+      padding: 10px;
+    }
+  }
 
-	a {
-		text-decoration: none;
-		color: var(--color5);
-		font-weight: bold;
-		text-shadow: 1px 1px 0px darken($color5, 30%);
-	}
+  a {
+    text-decoration: none;
+    color: var(--color5);
+    font-weight: bold;
+    text-shadow: 1px 1px 0px darken($color5, 30%);
+  }
 
-	p {
-		line-height: 5rem;
-	}
+  p {
+    line-height: 5rem;
+  }
 
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 2rem;
 
+    thead td {
+      background: var(--color5);
+      color: var(--color1);
+      text-shadow: 2px 1px 11px darken($color5, 30%),
+      1px 1px 1px darken($color5, 30%);
+    }
 
-	table {
-		width: 100%;
-		border-collapse: collapse;
-		font-size: 2rem;
+    td {
+      border: 1px solid gray;
+      padding: 1.5rem;
+    }
 
-		thead td {
-			background: var(--color5);
-			color: var(--color1);
-			text-shadow: 2px 1px 11px darken($color5, 30%),
-				1px 1px 1px darken($color5, 30%);
-		}
-
-		td {
-			border: 1px solid gray;
-			padding: 1.5rem;
-		}
-
-		tr:nth-child(even) {
-			background: var(--color1);
-		}
-	}
+    tr:nth-child(even) {
+      background: var(--color1);
+    }
+  }
 }
-
+/* INSTRUCTIONS */
 .instruction {
-	.text-block {
-		width: 95%;
-		margin: 5rem auto;
+  .text-block {
+    width: 95%;
+    margin: 5rem auto;
 
-		.title {
-			color: var(--color5);
-			text-align: center;
-			margin: 3rem auto;
-		}
-	}
+    .title {
+      color: var(--color5);
+      text-align: center;
+      margin: 3rem auto;
+    }
+  }
 }
 
-/* ADMIN SIDE NAV */
-.admin-side-nav {
-	height: 100%;
-	background: var(--color5);
-	padding: 2rem;
-	position: relative;
-	width: fit-content;
-	box-shadow: inset -4px -3px 20px -5px rgba(0, 0, 0, 0.472);
-
-	.show-hide-nav {
-		position: absolute;
-		right: 0;
-		top: 25px;
-		transform: translateX(125%);
-		display: none;
-	}
-
-	ul {
-		list-style: none;
-
-		li {
-			a {
-				color: var(--color1);
-				display: inline-block;
-				letter-spacing: .5rem;
-				text-transform: uppercase;
-				min-width: 100%;
-				padding: 1rem;
-				border-bottom: 1px solid;
-				transition: all .5s cubic-bezier(0.22, 0.61, 0.36, 1);
-				text-shadow: 1px 1px 1px black;
-				box-shadow: 0 2px 0 0 #00000063;
-
-				&:hover {
-					background: var(--color4);
-					color: var(--color5);
-					text-shadow: -1px -1px -1px rgb(255, 255, 255);
-				}
-			}
-		}
-	}
-}
 
 .login {
-	font-size: 1.6rem;
-	position: relative;
-	width: 100%;
-	height: 100%;
-	&-block{
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		max-width:300px;
-		left:50%;
-		top:50%;
-		transform:translate(-50%, -25%);
-		input, button{
-			font-size: 1.6rem;
-		}
-	}
+  font-size: 1.6rem;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &-block {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    max-width: 300px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -25%);
+    input, button {
+      font-size: 1.6rem;
+    }
+  }
 }
-.words {
-    [class*="col"]{
-    border:1px solid black;
-    text-align: center;
-    min-height: fit-content;
-    padding: 1.5rem 1rem;
+
+.words-mobile {
+
+  ul {
+    cursor: move;
+    cursor: grab;
+    &:active{
+      cursor: grabbing;
+    }
+  }
+
+  .row {
+    padding-top: 10px;
+    &.edit {
+      position: relative;
+      right: 60px;
+      border-right: 1px solid gray;
+      z-index: 1;
+    }
+  }
+
+  .circle {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background: var(--color5);
+    color: var(--color1);
+    box-shadow: inset 0 0 25px -8px black,
+    0px 0px 0px 1px white,
+    0px 0px 0px 2px #00000073;
+  }
+
+  .covered {
+
+    &.revield {
+      visibility: visible;
+      opacity: 1;
+    }
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    flex-grow: 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s ease;
+
+    a {
+      color: $color5;
+    }
+    .edit-word {
+    }
+    .delete-word {
+      color: red;
     }
 
-    .row{
-        align-items: stretch;
-		margin:0;
-    }
-}
-.words-mobile{
-	.line{
-		position: relative;
-		border-bottom: 1px solid $color5;
-		.row{
-			background: lightcyan;
-			padding-top: 10px;
-			&.edit{
-				position: relative;
-				right: 60px;
-				border-right: 1px solid gray;
-				z-index:1;
-			}
-		}
-	}
-
-	.circle {
-		border-radius: 50%;
-		height: 50px;
-		width: 50px;
-		background: var(--color5);
-		color: var(--color1);
-		box-shadow: inset 0 0 25px -8px black,
-		0px 0px 0px 1px white, 
-		0px 0px 0px 2px #00000073;
-	}
-
-
-	.covered {
-
-&.revield{
-	visibility: visible;
-	opacity:1;
-}
-		/* position: absolute; */
-		right: 0;
-		top: 0;
-		/* height: 100%; */
-		display: flex;
-		align-items: center;
-		justify-content: space-evenly;
-		flex-direction: column;
-		flex-grow: 1;
-		visibility: hidden;
-		opacity:0;
-		transition: all .3s ease;
-
-		a{
-			color:$color5;
-		}
-		.edit-word{
-		}
-		.delete-word{
-			color:red;
-		}
-
-
-	}
+  }
 }
 
-.hv-center{
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.hv-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 /*# sourceMappingURL=main.css.map */

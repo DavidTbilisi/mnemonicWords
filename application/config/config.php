@@ -45,7 +45,11 @@ function __autoload($class) {
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/mnemonicWords/';
+if($_SERVER['SERVER_NAME'] == 'localhost') {
+	$config['base_url'] = 'http://localhost/mnemonicWords/';
+} else{
+	$config['base_url'] = 'http://getsite.ge/learnwords/';
+}
 
 /*
 |--------------------------------------------------------------------------

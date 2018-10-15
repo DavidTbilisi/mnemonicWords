@@ -1,5 +1,7 @@
 .DS_Store
 node_modules
+benedmunds-CodeIgniter-Ion-Auth-2.6.0-591-g4a007e6.zip
+
 
 application/cache/*
 !application/cache/index.html

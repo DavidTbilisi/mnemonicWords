@@ -15,7 +15,6 @@
 			</div>
 			<div class="modal-body">
 
-
 				<div class="add-words">
 					<form action="<?php echo site_url() . '/save' ?>" method="post">
 						<div class="flex">
