@@ -168,5 +168,5 @@ global.david = (function () {
         return {dom, Ajax}
     })(view);
 
-    return {view, octopus, f, Funcs}
+    return {view, octopus, f, Funcs, url, dom}
 })();

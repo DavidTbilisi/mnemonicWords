@@ -31,7 +31,13 @@ waitFor(el, callback) {
         }
     })
 }
-
+    $(selector, only = true){
+            let el = document.querySelectorAll(selector);
+        if(el.length > 1 && !only) {
+            return el;
+        }
+        return document.querySelector(selector);
+}
 
 
     getSelectedText() {
@@ -58,11 +64,33 @@ waitFor(el, callback) {
                         behavior: "smooth"
                     });
                 }
-
             })
-
-
         }
+    } // end jkscroll
+
+
+    create(obj = {pos,place,el}){
+        obj.pos = obj.pos === undefined?1:obj.pos;
+
+        switch (obj.pos){
+            case 1:
+                obj.pos = 'beforebegin';
+                break;
+            case 2:
+                obj.pos = 'afterbegin';
+                break;
+            case 3:
+                obj.pos = 'beforeend';
+                break;
+            case 4:
+                obj.pos = 'afterend';
+                break;
+        }
+        obj.place = obj.place === undefined?this.$('h1')||this.$('div')||this.$("body"):obj.place;
+        obj.el = obj.el === undefined?"<h1>You Have To Write Some Text</h1>":obj.el;
+        obj.place.insertAdjacentHTML(obj.pos,obj.el);
     }
+
+
 
 }

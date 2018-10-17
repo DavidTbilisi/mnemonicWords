@@ -42,9 +42,58 @@ class Welcome extends Front_Controller{
 		$this->load->view('incs/footer');
 	}
 
+
+
 	public function  import(){
+
 		$this->load->view('incs/header',["data"=>$this->data]);
-		$this->load->view('import');
+
+
+		$this->load->helper(['file','form']);
+
+
+		$config['upload_path']          = './assets/';
+		$config['allowed_types']        = 'csv';
+
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload('file'))
+		{
+			$error = array('error' => $this->upload->display_errors());
+
+			$this->load->view('import',$error);
+
+		}
+		else
+		{
+			$datas = array('upload_data' => $this->upload->data());
+
+			$this->load->view('import',$datas);
+
+		}
+
+
+
+
+
+
+
+
+//		$filename= base_url('assets/Phrasebook.csv');
+//		$handle = fopen($filename, "r");
+//		$user_id = $this->ion_auth->get_user_id();
+//
+//		while(fgetcsv($handle, 1000, ",") !== false){
+//
+//			$data =fgetcsv($handle, 1000, ",");
+//
+//			$import="INSERT into words (language,newWord,meaning,user_id)" ;
+//			$import .= "values('$data[0]','$data[2]','$data[3]','$user_id' );";
+//
+//			$this->db->query($import);
+//		}
+
 		$this->load->view('incs/footer');
 
 	}
