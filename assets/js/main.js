@@ -8,9 +8,10 @@ require('./hammerJquery');
 import {Ajax} from './Ajax';
 import {Dom} from './dom';
 import {Url} from './url';
+import {Funcs} from './Funcs';
 let dom = new Dom();
-dom.jkscroll(200);
-
+dom.jkscroll(200, 'off');
+let f = new Funcs();
 // setting up host;
 let url;
 let bool = location.href.search('localhost') > -1;
@@ -50,6 +51,11 @@ global.david = (function () {
                     console.log(e.type)
                 }
             });
+        }
+/* todo:confirm delete */
+        function confirmDelete (e) {
+            "use strict";
+            e.preventDefault();
         }
 
         function showEditWordModal(e) {
@@ -162,5 +168,5 @@ global.david = (function () {
         return {dom, Ajax}
     })(view);
 
-    return {view, octopus, Ajax}
+    return {view, octopus, f, Funcs}
 })();
