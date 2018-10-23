@@ -47,7 +47,7 @@
                  role="tabpanel"
                  aria-labelledby="<?= $item['tab']['id'] ?>">
 <!--                <form action="" method="post">-->
-                    <textarea class="d-none" name="word" id="editor<?= $item['tab']['id']?>"><?=$word->text?></textarea>
+                    <textarea class="d-none" name="word" id="editor<?= $item['tab']['id']?>"><?php echo isset($word->text)?$word->text:''?></textarea>
 <!--                    <input type="button" value="შენახვა" class="btn btn-outline-success btn-lg float-right det-save" >-->
                 <button class="btn btn-outline-success btn-lg float-right det-save" > შენახვა </button>
 <!--                </form>-->

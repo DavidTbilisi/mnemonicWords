@@ -98,9 +98,18 @@ class Welcome extends Front_Controller {
 
 	public function details ($wordId = 171) {
 
+
+		$this->db->from('details');
+		$this->db->where('words_id',$wordId);
+
+		$num = $this->db->count_all_results();
+
 		$this->db->from('words');
 		$this->db->where('words.id',$wordId);
-		$this->db->join('details','details.words_id = words.id' );
+		if ($num)
+		{
+			$this->db->join( 'details', 'details.words_id = words.id' );
+		}
 		$query = $this->db->get();
 
 
