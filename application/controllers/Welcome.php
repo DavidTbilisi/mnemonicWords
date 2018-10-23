@@ -3,7 +3,7 @@ defined( 'BASEPATH' ) OR exit( 'No direct script access allowed' );
 
 class Welcome extends Front_Controller {
 
-
+	public $words_count;
 	/**
 	 * Welcome constructor.
 	 */
@@ -14,8 +14,10 @@ class Welcome extends Front_Controller {
 
 		// $this->output->enable_profiler( true );
 
-
-
+		$this->db->from( 'words' );
+		$this->db->where( 'user_id = ' . $this->ion_auth->get_user_id() );
+		$this->db->order_by( 'id desc' );
+		$this->words_count = ( $this->db->get() )->result();
 	}
 
 	public function index( $start = 0, $limit = 10 ) {
@@ -31,14 +33,14 @@ class Welcome extends Front_Controller {
 		$this->db->limit( $limit, $start );
 		$words = ( $this->db->get() )->result();
 
-		// $words = $this->words_m->get_by('user_id = '.$this->ion_auth->get_user_id());
 
 
 		$this->load->view( 'incs/header', [ "data" => $this->data ] );
 		$this->load->view( 'read', [
-			'words'    => $words,
-			'isLogged' => $this->ion_auth->logged_in(),
-			'start'    => $start,
+			'words'       => $words,
+			'isLogged'    => $this->ion_auth->logged_in(),
+			'start'       => $start,
+			'words_count' => count($this->words_count),
 		] );
 		$this->load->view( 'incs/footer' );
 	}
@@ -59,7 +61,6 @@ class Welcome extends Front_Controller {
 
 		unlink( $path );
 	}
-
 
 	public function import() {
 		$ui = $this->ion_auth->get_user_id();
@@ -112,7 +113,6 @@ class Welcome extends Front_Controller {
 		}
 		$query = $this->db->get();
 
-
 		$word = $query->row();
 
 		$this->load->view( 'incs/header',[ "data" => $this->data ]  );
@@ -122,7 +122,6 @@ class Welcome extends Front_Controller {
 		$this->load->view( 'incs/footer' );
 
 	}
-
 
 	private function uploadFile( $view, $user_id ) {
 		$config['upload_path']   = './assets/';
@@ -235,6 +234,36 @@ class Welcome extends Front_Controller {
 			redirect( site_url() );
 		}
 	}
+
+	public function export( $format =  'csv') {
+		$this->load->dbutil();
+		$this->load->helper('download');
+		$sel = 'words.newWord, words.connection, words.assoc, words.meaning, ';
+		$sel.= 'details.text';
+		$this->db->from( 'words' );
+		$this->db->select( $sel );
+		$this->db->where( 'words.user_id = ' . $this->ion_auth->get_user_id() );
+		$this->db->join('details', 'details.words_id = words.id','left');
+		$this->db->order_by( 'words.id desc' );
+
+		if ($format == 'csv'){
+		$data = $this->dbutil->csv_from_result( $this->db->get() );
+		} else if ($format == 'xml'){
+			$data = $this->dbutil->xml_from_result( $this->db->get() );
+		}
+
+
+		else {
+		echo 'xml or csv only';
+		}
+
+
+		$path = 'assets/Phrasebook_'.date("Y_m_d_H_i_s").".{$format}";
+
+		 file_put_contents($path,$data);
+		 force_download($path,"\xEF\xBB\xBF".$data,'csv');
+	}
+
 	public function detailsSave($id = null) {
 		$post = $this->input->post();
 		if ( $post['words_id'] )
@@ -246,15 +275,15 @@ class Welcome extends Front_Controller {
 
 			$num = $this->db->count_all_results();
 			echo $num;
-			if ( $num < 1) {
+			if ( $num < 1):
 				$this->db->insert('details', $data);
-			} else {
-				$this->db->where('words_id',$id);
+			else:
 				$this->db->update('details', $data, "words_id  =  {$id}");
-			}
+			endif;
 		};
 
 	}
+
 	public function routesToJson() {
 		$path = HOME . "/assets/js/routes.json";
 		// echo $path;

@@ -1,8 +1,12 @@
 /**
  * Created by david on 8/26/2018.
  */
-import 'bootstrap/dist/js/bootstrap.bundle.min'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/monokai.css';
+import 'codemirror';
+import 'codemirror/mode/xml/xml';
 import 'jquery';
 import 'hammerjs';
 import '../css/main.scss';
@@ -182,12 +186,12 @@ global.david = (function () {
                 },
                 toolbar: [
                     // [groupName, [list of button]]
-                    // [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ],
                     ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['font', ['strikethrough', 'superscript', 'subscript']],
                     ['fontsize', ['fontsize']],
                     ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
+                    [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ],
 
                 ]
             });
@@ -236,7 +240,6 @@ global.david = (function () {
         $(document).on('click', v.det_save, function (e) {
             e.preventDefault();
 
-            console.log($(this).parent().find());
            let saveDetails = new Ajax({
                url:`${url.home()}/detailsSave/${url.arr(2)}`,
                data:{

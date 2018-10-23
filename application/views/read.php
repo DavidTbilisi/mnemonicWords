@@ -2,8 +2,10 @@
     <div class="col"><?php $this->load->view( 'admin/nav' ); ?></div>
 </div>
 <hr>
+<div>
 <?php $this->load->view( 'add-word' ) ?>
-
+    <span class="words-count"> სულ: <?=$words_count?></span>
+</div>
 <div class="row">
     <div class="col">
 
