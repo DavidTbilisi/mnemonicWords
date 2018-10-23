@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
 
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="<?= base_url();  ?>">
         <img src="https://cdn.dribbble.com/users/25514/screenshots/1873731/movers-logo-design-branding-identity-ramotion.png"
              width="30" alt="">
         <span>Learn Words</span>
@@ -20,7 +20,7 @@
     
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav navbar-right">
+        <ul class="navbar-nav ">
 
             <?php if ($isLogged) : ?>
                 <li class="nav-item">

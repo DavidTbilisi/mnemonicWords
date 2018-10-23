@@ -32,7 +32,8 @@ waitFor(el, callback) {
     })
 }
     $(selector, only = true){
-            let el = document.querySelectorAll(selector);
+        var el = typeof selector === 'object' ? selector :document.querySelector(selector);
+
         if(el.length > 1 && !only) {
             return el;
         }
@@ -91,6 +92,31 @@ waitFor(el, callback) {
         obj.place.insertAdjacentHTML(obj.pos,obj.el);
     }
 
+    parentElement(startEl, toFindEl){
 
+        var el = typeof element === 'object' ? element :document.querySelector(startEl);
+        let foundEl;
+        while (el.parentElement) {
+            var found =
+            this.hasAttr(el.parentElement, "class") ?this.hasAttr(el.parentElement).search(toFindEl):
+                this.hasAttr(el.parentElement, 'id') ? this.hasAttr(el.parentElement).search(toFindEl):
+                this.hasAttr(el.parentElement, 'data') ? this.hasAttr(el.parentElement).search(toFindEl): -1;
+            if (found > -1) {
+                foundEl = el.parentElement;
+                return foundEl;
+            }
+        }
+        return false;
+
+    }
+
+    hasAttr(element, attr){
+        var el = typeof element === 'object' ? element :document.querySelector(element);
+
+        this.$(el).getAttribute(attr)? this.$(el).getAttribute(attr) :false;
+    }
+    prev(el){
+        return el.parentElement();
+    }
 
 }

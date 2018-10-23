@@ -7,13 +7,13 @@ export class Url {
         return `${location.origin}/${this.baseUrl}`
     }
 
-    urlArr(){
-        let url = this.home().split('/');
-        return url.splice(3,url.length);
-    }
-    fullUrlArr(){
-        let url = this.home().split('/');
-        return url;
+    arr(one = null){
+        let url = location.href.split('/');
+        let re = url.splice(3,url.length);
+        if (one != null) {
+           return re[one];
+        }
+        return re;
     }
 
     has(word){

@@ -54,6 +54,8 @@ $route['default_controller'] = 'welcome';
 $route['save'] = 'welcome/save';
 $route['save/(:num)'] = 'welcome/save/$1';
 $route['delete/(:num)'] = 'welcome/delete/$1';
+$route['details/(:num)'] = 'welcome/details/$1';
+$route['detailsSave/(:num)'] = 'welcome/detailsSave/$1';
 
 $route['register'] = 'auth/create_user';
 $route['login'] = 'auth/login';

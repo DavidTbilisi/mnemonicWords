@@ -1,15 +1,23 @@
 /**
  * Created by david on 8/26/2018.
  */
+import 'bootstrap/dist/js/bootstrap.bundle.min'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery';
 import 'hammerjs';
 import '../css/main.scss';
+import {Swal} from 'sweetalert2';
+
+
 require('./hammerJquery');
 import {Ajax} from './Ajax';
 import {Dom} from './dom';
 import {Url} from './url';
 import {Funcs} from './Funcs';
+
+import 'summernote';
 let dom = new Dom();
+let swal = require("sweetalert2");
 dom.jkscroll(200, 'off');
 let f = new Funcs();
 // setting up host;
@@ -27,10 +35,12 @@ global.david = (function () {
     let view = (function () {
 
         return {
-            editWord        : '.edit-word',
-            loadMore        : '.load_more',
-            modal           : '#exampleModal',
-            search          : 'nav input[type=text]',
+            editWord: '.edit-word',
+            loadMore: '.load_more',
+            modal: '#exampleModal',
+            search: 'nav input[type=text]',
+            delete: '.delete-word',
+            det_save:'.det-save',
         }
     })();
 
@@ -52,10 +62,37 @@ global.david = (function () {
                 }
             });
         }
-/* todo:confirm delete */
-        function confirmDelete (e) {
+
+        function confirmDelete(e) {
             "use strict";
             e.preventDefault();
+            swal({
+                title: 'დარწმუნებული ხართ რომ გინდათ ამ სიტყვის წაშლა?',
+                text: "სიტყვის დაბრუნება შეუძლებელი იქნება",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'დარწმუნებული ვარ',
+                cancelButtonText: 'გაუქმება'
+            }).then((result) => {
+                if (result.value) {
+                    let href = dom.nthParent(e.target, 1)[0].href;
+
+                    let deleteWord = new Ajax({url:href});
+                    deleteWord.ok.then((d) => {
+                        showSearchResult(d, 'replaceWith');
+                    });
+                    deleteWord.ok.catch((err) => {
+                        return err
+                    });
+                    swal(
+                        'სიტყვა წაიშალა!',
+                        '',
+                        'success'
+                    )
+                }
+            })
         }
 
         function showEditWordModal(e) {
@@ -86,7 +123,7 @@ global.david = (function () {
                 $('.words-mobile').replaceWith($(data).find('.words-mobile'))
             } else if (action === "append") {
                 let rows = $(data).find('.words-mobile').children('.row');
-                $('.words-mobile').append(rows.slice(1,rows.length));
+                $('.words-mobile').append(rows.slice(1, rows.length));
             }
             makeEditBtns();
         }
@@ -118,9 +155,7 @@ global.david = (function () {
         function update() {
             "use strict";
             $(document).ready(function () {
-
                 makeEditBtns();
-
                 $(document).find('.edit-word').on('click', function (e) {
                     e.preventDefault();
                     showEditWordModal(e);
@@ -133,18 +168,49 @@ global.david = (function () {
         function init() {
             "use strict";
             makeEditBtns();
-        }
+            $('.details textarea').summernote({
+                dialogsInBody: true,
+                codemirror: { // codemirror options
+                    theme: 'monokai'
+                },
+                height:150,
+                popover: {
+                    air: [
+                        ['color', ['color']],
+                        ['font', ['bold', 'underline', 'clear']]
+                    ]
+                },
+                toolbar: [
+                    // [groupName, [list of button]]
+                    // [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ],
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
 
+                ]
+            });
+            //
+            //
+            // $('.summernote').summernote({
+            //     airMode:true,
+            //     toolbar: [
+            //         // [groupName, [list of button]]
+            //         ['style', ['bold', 'italic', 'underline', 'clear']],
+            //         ['font', ['strikethrough', 'superscript', 'subscript']],
+            //         ['color', ['color']],
+            //     ]
+            // });
+        }
+        init();
 
         $(document).on('click', v.editWord, function (e) {
             e.preventDefault();
             showEditWordModal(e);
         });
 
-
-        init();
-
-        $(document).on('keyup',v.search, function () {
+        $(document).on('keyup', v.search, function () {
 
             let ajax = new Ajax({
                 url: `${url.home()}/welcome/searchResult/`,
@@ -159,11 +225,37 @@ global.david = (function () {
 
         });
 
-
         $(document).on('click', v.loadMore, function () {
             loadMore();
         });
 
+        $(document).on('click', v.delete, function (e) {
+            confirmDelete(e);
+        });
+
+        $(document).on('click', v.det_save, function (e) {
+            e.preventDefault();
+
+            console.log($(this).parent().find());
+           let saveDetails = new Ajax({
+               url:`${url.home()}/detailsSave/${url.arr(2)}`,
+               data:{
+                   text: $('.details textarea').summernote('code'),
+                   words_id: url.arr(2)
+               },
+               method:'post'
+           });
+
+
+           saveDetails.ok.then(function(data){
+               console.log(data);
+               $('.details textarea').summernote('destroy');
+               init();
+           }).catch(function (err) {
+               console.log(err)
+           })
+
+        });
 
         return {dom, Ajax}
     })(view);

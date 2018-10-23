@@ -32,10 +32,12 @@
                 ?>
                 <div class="row">
                     <div class="col-3 hv-center">
+                        <a href="<?= base_url("/details/{$word->id}")  ?>">
                         <div class="circle hv-center">
-
 							<?php  echo isset($start)?  ++$start:++$index;?>
                         </div>
+                        </a>
+
                     </div>
                     <div class="col">
                         <ul>
