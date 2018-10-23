@@ -39,7 +39,7 @@
 							<?php  echo isset($start)?  ++$start:++$index;?>
                         </div>
                         </a>
-
+<!--                        <input class="ml-5" type="checkbox">-->
                     </div>
                     <div class="col">
                         <ul>

@@ -6,10 +6,11 @@
         <span>Learn Words</span>
     </a>
 
+<?php if ($this->uri->segment(1,'no') != "details") :  ?>
     <div class="form-inline">
         <input class="form-control " type="text" placeholder="Search">
     </div>
-
+<?php endif;  ?>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

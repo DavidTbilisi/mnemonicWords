@@ -162,7 +162,7 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
 */
-$config['composer_autoload'] = FALSE;
+$config['composer_autoload'] = true;
 
 /*
 |--------------------------------------------------------------------------
@@ -528,7 +528,7 @@ $config['time_reference'] = 'local';
 | Note: You need to have eval() enabled for this to work.
 |
 */
-$config['rewrite_short_tags'] = FALSE;
+$config['rewrite_short_tags'] = true;
 
 /*
 |--------------------------------------------------------------------------
