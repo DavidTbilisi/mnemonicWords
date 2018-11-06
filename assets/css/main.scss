@@ -13,11 +13,11 @@ $color5: #32639d;
 
 :root {
   font-size: 10px;
-  --color1: #fee3b4;
-  --color2: #fec0a2;
-  --color3: #eba194;
-  --color4: #dac6ca;
-  --color5: #32639d;
+  --color1: $color1;
+  --color2: $color2;
+  --color3: $color3;
+  --color4: $color4;
+  --color5: $color5;
 }
 
 

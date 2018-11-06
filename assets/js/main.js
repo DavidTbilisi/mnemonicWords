@@ -70,19 +70,6 @@ global.david = (function () {
                 }
              })
 
-            // $(document).find('ul').hammer().bind("swipeleft swiperight", function (e) {
-            //     let element = dom.nthParent(this, 2);
-            //     console.log(e.gesture.center, e.gesture.distance);
-            //
-            //
-            //     if (e.type === 'swipeleft' && e.gesture.distance > 30) {
-            //         $(element).find('.covered').addClass('revield');
-            //     } else if (e.type === 'swiperight' && e.gesture.distance > 30) {
-            //         $(element).find('.covered').removeClass('revield');
-            //     } else {
-            //         console.log(e.type)
-            //     }
-            // });
         }
 
         function confirmDelete(e) {
@@ -213,17 +200,7 @@ global.david = (function () {
 
                 ]
             });
-            //
-            //
-            // $('.summernote').summernote({
-            //     airMode:true,
-            //     toolbar: [
-            //         // [groupName, [list of button]]
-            //         ['style', ['bold', 'italic', 'underline', 'clear']],
-            //         ['font', ['strikethrough', 'superscript', 'subscript']],
-            //         ['color', ['color']],
-            //     ]
-            // });
+
         }
         init();
 
