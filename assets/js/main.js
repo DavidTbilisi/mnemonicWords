@@ -56,18 +56,27 @@ global.david = (function () {
             "use strict";
              $(document).find('.words-mobile ul').draggable({
                  axis: "x",
+                spanMode:'both',
                 drag: function(event, ui) {
                      // console.log(event);
                      // console.log(ui);
-                     console.log(ui.position.left);
+                     // console.log(ui.position.left);
 
-                    let element = dom.nthParent(this, 2);
+                    let element = dom.nthParent(this, 3);
+
                     if (ui.position.left < -20) {
                         $(element).find('.covered').addClass('revield');
+                        // ლიმიტი მარცხნივ გაწევაზე
+                        ui.position.left = Math.max( -60, ui.position.left );
+                        //     ui.position.left = -60;
                     } else if (ui.position.left > -10 ) {
-                        $(this).position(ui.originalPosition);
                         $(element).find('.covered').removeClass('revield');
+                        // ლიმიტი მარჯვნივ გაწევაზე
+                        ui.position.left = Math.min( 0, ui.position.left );
+                        // ui.position.left = -0;
+
                     }
+
                 }
              })
 
