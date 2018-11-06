@@ -45,8 +45,13 @@ function __autoload($class) {
 | a PHP script and you can easily do that on your own.
 |
 */
+
+$root = dirname(APPPATH);
+$root = explode("\\",$root);
+$root = $root[count($root)-1];
+
 if($_SERVER['SERVER_NAME'] == 'localhost') {
-	$config['base_url'] = 'http://localhost/dictionary/';
+	$config['base_url'] = "http://localhost/{$root}/";
 } else{
 	$config['base_url'] = 'http://getsite.ge/learnwords/';
 }
