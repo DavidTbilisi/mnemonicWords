@@ -29,7 +29,7 @@ let f = new Funcs();
 let url;
 let bool = location.href.search('localhost') > -1;
 if (bool) {
-    url = new Url('mnemonicWords/index.php');
+    url = new Url('dictionary/index.php');
 } else {
     url = new Url('learnwords/index.php');
 

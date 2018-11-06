@@ -11,29 +11,29 @@
 
 
         <div class="words-mobile">
-            <hr>
             <div class="row">
-                <div class="col-3 hv-center">
+                <div class="col-1 hv-center">
                     <div class="circle hv-center">
                         #
                     </div>
                 </div>
-                <div class="col-9">
-                    <li class="col-12"> სიტყვა      </li>
-                    <li class="col-12"> ასოციაცია   </li>
-                    <li class="col-12"> კავშირი     </li>
-                    <li class="col-12"> მნიშვნელობა </li>
+                <div class="col">
+                    <ul class="list-unstyled">
+                        <li class="col-12"> სიტყვა      </li>
+                        <li class="col-12"> ასოციაცია   </li>
+                        <li class="col-12"> კავშირი     </li>
+                        <li class="col-12"> მნიშვნელობა </li>
+                    </ul>
                 </div>
             </div>
-            <hr>
 
 	        <?php
             if (count($words) > 0 ) :
 
             foreach ( $words as $index => $word ) :
                 ?>
-                <div class="row">
-                    <div class="col-3 hv-center">
+                <div class="row lang-item-container position-relative">
+                    <div class="col-1 hv-center">
                         <a href="<?= base_url("/details/{$word->id}")  ?>">
                         <div class="circle hv-center">
 							<?php  echo isset($start)?  ++$start:++$index;?>
@@ -42,7 +42,7 @@
 <!--                        <input class="ml-5" type="checkbox">-->
                     </div>
                     <div class="col">
-                        <ul>
+                        <ul class="lang-items list-unstyled">
                             <li> <?= $word->newWord ?>      </li>
                             <li> <?= $word->assoc ?>        </li>
                             <li> <?= $word->connection ?>   </li>
@@ -56,11 +56,11 @@
                             data-target="#exampleModal"
                             href="<?php echo site_url() . '/save/' . $word->id ?>"
                         >
-                            <i class="icon-edit-sign icon-2x"></i>
+                            <i class="fa fa-pencil"></i>
                         </a>
 
                         <a class="delete-word" href="<?php echo site_url() . '/delete/' . $word->id ?>">
-                            <i class="icon-trash icon-2x"></i>
+                            <i class="icon-trash"></i>
                         </a>
                     </div>
                 </div>

@@ -46,7 +46,7 @@ function __autoload($class) {
 |
 */
 if($_SERVER['SERVER_NAME'] == 'localhost') {
-	$config['base_url'] = 'http://localhost/mnemonicWords/';
+	$config['base_url'] = 'http://localhost/dictionary/';
 } else{
 	$config['base_url'] = 'http://getsite.ge/learnwords/';
 }
