@@ -22,22 +22,26 @@
 							<input class="form-control form-control-lg"
                                    placeholder="ახალი სიტყვა"
                                    name="newWord"
-                                   type="text">
+                                   type="text"
+                                   title="ახალი (უცნობი) სიტყვა">
 
 							<input class="form-control form-control-lg"
                                    placeholder="ასოციაცია"
                                    name="assoc"
-                                   type="text">
+                                   type="text"
+                                   title="შეიყვანეთ ახალ სიტყვასთან დაკავშირებული ასოციაცია">
 
 							<input class="form-control form-control-lg"
                                    placeholder="კავშირი"
                                    name="connection"
-                                   type="text">
+                                   type="text"
+                                   title="გააერთიანეთ ახალი სიტყვა, ასოციაცია და მნიშვნელობა">
 
 							<input class="form-control form-control-lg"
                                    placeholder="მნიშვნელობა"
                                    name="meaning"
-                                   type="text">
+                                   type="text"
+                                   title="ახალი სიტყვის მნიშვნელობა">
 
 							<input class="btn btn-primary mb-2"
                                    type="submit"

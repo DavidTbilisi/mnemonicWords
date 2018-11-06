@@ -9,6 +9,7 @@ import 'codemirror';
 import 'codemirror/mode/xml/xml';
 import 'jquery';
 import 'hammerjs';
+import 'webpack-jquery-ui/draggable';
 import '../css/main.scss';
 import {Swal} from 'sweetalert2';
 
@@ -52,19 +53,36 @@ global.david = (function () {
 
         function makeEditBtns() {
             "use strict";
-            $(document).find('ul').hammer().bind("swipeleft swiperight", function (e) {
-                let element = dom.nthParent(this, 2);
-                console.log(e.gesture.center, e.gesture.distance);
+             $(document).find('.words-mobile ul').draggable({
+                 axis: "x",
+                drag: function(event, ui) {
+                     // console.log(event);
+                     // console.log(ui);
+                     console.log(ui.position.left);
 
-
-                if (e.type === 'swipeleft' && e.gesture.distance > 30) {
-                    $(element).find('.covered').addClass('revield');
-                } else if (e.type === 'swiperight' && e.gesture.distance > 30) {
-                    $(element).find('.covered').removeClass('revield');
-                } else {
-                    console.log(e.type)
+                    let element = dom.nthParent(this, 2);
+                    if (ui.position.left < -20) {
+                        $(element).find('.covered').addClass('revield');
+                    } else if (ui.position.left > -10 ) {
+                        $(this).position(ui.originalPosition);
+                        $(element).find('.covered').removeClass('revield');
+                    }
                 }
-            });
+             })
+
+            // $(document).find('ul').hammer().bind("swipeleft swiperight", function (e) {
+            //     let element = dom.nthParent(this, 2);
+            //     console.log(e.gesture.center, e.gesture.distance);
+            //
+            //
+            //     if (e.type === 'swipeleft' && e.gesture.distance > 30) {
+            //         $(element).find('.covered').addClass('revield');
+            //     } else if (e.type === 'swiperight' && e.gesture.distance > 30) {
+            //         $(element).find('.covered').removeClass('revield');
+            //     } else {
+            //         console.log(e.type)
+            //     }
+            // });
         }
 
         function confirmDelete(e) {
