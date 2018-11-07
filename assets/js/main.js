@@ -53,88 +53,84 @@ global.david = (function () {
 
         function makeEditBtns() {
             "use strict";
-             $(document).find('.words-mobile ul').draggable({
-                 axis: "x",
-                spanMode:'both',
-                drag: function(event, ui) {
-                     // console.log(event);
-                     // console.log(ui);
-                     // console.log(ui.position.left);
-
-                    let element = dom.nthParent(this, 3);
-
-                    if (ui.position.left < -20) {
-                        $(element).find('.covered').addClass('revield');
-                        // ლიმიტი მარცხნივ გაწევაზე
-                        ui.position.left = Math.max( -60, ui.position.left );
-                        //     ui.position.left = -60;
-                    } else if (ui.position.left > -10 ) {
-                        $(element).find('.covered').removeClass('revield');
-                        // ლიმიტი მარჯვნივ გაწევაზე
-                        ui.position.left = Math.min( 0, ui.position.left );
-                        // ui.position.left = -0;
-
-                    }
-
-                }
-             })
+             // $(document).find('.words-mobile ul').draggable({
+             //     axis: "x",
+             //    spanMode:'both',
+             //    drag: function(event, ui) {
+             //        let element = dom.nthParent(this, 3);
+             //
+             //        if (ui.position.left < -20) {
+             //            $(element).find('.covered').addClass('revield');
+             //            // ლიმიტი მარცხნივ გაწევაზე
+             //            ui.position.left = Math.max( -60, ui.position.left );
+             //            //     ui.position.left = -60;
+             //        } else if (ui.position.left > -10 ) {
+             //            $(element).find('.covered').removeClass('revield');
+             //            // ლიმიტი მარჯვნივ გაწევაზე
+             //            ui.position.left = Math.min( 0, ui.position.left );
+             //            // ui.position.left = -0;
+             //
+             //        }
+             //
+             //    }
+             // })
 
         }
 
         function confirmDelete(e) {
             "use strict";
-            e.preventDefault();
-            swal({
-                title: 'დარწმუნებული ხართ რომ გინდათ ამ სიტყვის წაშლა?',
-                text: "სიტყვის დაბრუნება შეუძლებელი იქნება",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'დარწმუნებული ვარ',
-                cancelButtonText: 'გაუქმება'
-            }).then((result) => {
-                if (result.value) {
-                    
-                    let href = e.target.href;
-                    let deleteWord = new Ajax({url:href});
-                    deleteWord.ok.then((d) => {
-                        showSearchResult(d, 'replaceWith');
-                    });
-                    deleteWord.ok.catch((err) => {
-                        return err
-                    });
-                    swal(
-                        'სიტყვა წაიშალა!',
-                        '',
-                        'success'
-                    )
-                }
-            })
+            // e.preventDefault();
+            // swal({
+            //     title: 'დარწმუნებული ხართ რომ გინდათ ამ სიტყვის წაშლა?',
+            //     text: "სიტყვის დაბრუნება შეუძლებელი იქნება",
+            //     type: 'warning',
+            //     showCancelButton: true,
+            //     confirmButtonColor: '#3085d6',
+            //     cancelButtonColor: '#d33',
+            //     confirmButtonText: 'დარწმუნებული ვარ',
+            //     cancelButtonText: 'გაუქმება'
+            // }).then((result) => {
+            //     if (result.value) {
+            //
+            //         let href = e.target.href;
+            //         let deleteWord = new Ajax({url:href});
+            //         deleteWord.ok.then((d) => {
+            //             showSearchResult(d, 'replaceWith');
+            //         });
+            //         deleteWord.ok.catch((err) => {
+            //             return err
+            //         });
+            //         swal(
+            //             'სიტყვა წაიშალა!',
+            //             '',
+            //             'success'
+            //         )
+            //     }
+            // })
         }
 
         function showEditWordModal(e) {
             "use strict";
-            let target = e.target;
-            let parent = dom.nthParent(target, 2);
-            let id = $(parent[0]).data('id');
-            console.log(parent, id );
-            let actionPath = `${url.home()}/save/${id}`;
-            let formAction = $(v.modal).find('form')[0];
-            let path = `${url.home()}/welcome/wordsJson/${id}`;
-
-            let ajax = new Ajax({url: path});
-
-            ajax.ok.then(data => {
-                let word = JSON.parse(data);
-                $(formAction).attr('action', actionPath);
-                $(v.modal).prepend(`<input hidden type="text" name="id" value="${word.id}">`);
-                $(v.modal).find('.modal-title').text('შეცვალე სიტყვები');
-                $(v.modal).find('input[name=newWord]').val(word.newWord);
-                $(v.modal).find('input[name=assoc]').val(word.assoc);
-                $(v.modal).find('input[name=connection]').val(word.connection);
-                $(v.modal).find('input[name=meaning]').val(word.meaning);
-            }).catch(err => console.log(err))
+            // let target = e.target;
+            // let parent = dom.nthParent(target, 2);
+            // let id = $(parent[0]).data('id');
+            // console.log(parent, id );
+            // let actionPath = `${url.home()}/save/${id}`;
+            // let formAction = $(v.modal).find('form')[0];
+            // let path = `${url.home()}/welcome/wordsJson/${id}`;
+            //
+            // let ajax = new Ajax({url: path});
+            //
+            // ajax.ok.then(data => {
+            //     let word = JSON.parse(data);
+            //     $(formAction).attr('action', actionPath);
+            //     $(v.modal).prepend(`<input hidden type="text" name="id" value="${word.id}">`);
+            //     $(v.modal).find('.modal-title').text('შეცვალე სიტყვები');
+            //     $(v.modal).find('input[name=newWord]').val(word.newWord);
+            //     $(v.modal).find('input[name=assoc]').val(word.assoc);
+            //     $(v.modal).find('input[name=connection]').val(word.connection);
+            //     $(v.modal).find('input[name=meaning]').val(word.meaning);
+            // }).catch(err => console.log(err))
         }
 
         function showSearchResult(data, action = 'replaceWith') {
@@ -150,25 +146,25 @@ global.david = (function () {
 
         let limit = 10, start = 10;
 
-        function loadMore() {
+        // function loadMore() {
+        //
+        //     let ajax = new Ajax({
+        //         url: `${url.home()}/`,
+        //         method: 'post',
+        //         data: {
+        //             start: start,
+        //             limit: limit
+        //         }
+        //     });
+        //
+        //     ajax.ok.then((data) => {
+        //         "use strict";
+        //         start += limit;
+        //         showSearchResult(data, 'append');
+        //
+        //     })
 
-            let ajax = new Ajax({
-                url: `${url.home()}/`,
-                method: 'post',
-                data: {
-                    start: start,
-                    limit: limit
-                }
-            });
-
-            ajax.ok.then((data) => {
-                "use strict";
-                start += limit;
-                showSearchResult(data, 'append');
-
-            })
-
-        }
+        // }
 
 
         function update() {
@@ -234,9 +230,9 @@ global.david = (function () {
 
         });
 
-        $(document).on('click', v.loadMore, function () {
-            loadMore();
-        });
+        // $(document).on('click', v.loadMore, function () {
+        //     loadMore();
+        // });
 
         $(document).on('click', v.delete, function (e) {
             confirmDelete(e);
@@ -270,3 +266,143 @@ global.david = (function () {
 
     return {view, octopus, f, Funcs, url, dom}
 })();
+
+global.sharedData = {
+  name: 'from vue js',
+};
+
+
+global.v = new Vue({
+   el:"#root",
+    data:{
+       sharedData,
+        limit:10,
+        start:0,
+        modal:{
+            title:`vue title `,
+            newWord:``,
+            assoc:``,
+            connection:``,
+            meaning:``,
+            url:``,
+        },
+        words: ''
+    },
+    methods: {
+        makeEditBtns:function () {
+            console.log('edit buttons baked');
+            $(document).find('.words-mobile ul').draggable({
+                axis: "x",
+                spanMode:'both',
+                drag: function(event, ui) {
+                    let element = dom.nthParent(this, 3);
+
+                    if (ui.position.left < -20) {
+                        $(element).find('.covered').addClass('revield');
+                        // ლიმიტი მარცხნივ გაწევაზე
+                        ui.position.left = Math.max( -60, ui.position.left );
+                        //     ui.position.left = -60;
+                    } else if (ui.position.left > -10 ) {
+                        $(element).find('.covered').removeClass('revield');
+                        // ლიმიტი მარჯვნივ გაწევაზე
+                        ui.position.left = Math.min( 0, ui.position.left );
+                        // ui.position.left = -0;
+
+                    }
+
+                }
+            })
+        },
+        confirmDelete:function (e) {
+            e.preventDefault();
+            swal({
+                title: 'დარწმუნებული ხართ რომ გინდათ ამ სიტყვის წაშლა?',
+                text: "სიტყვის დაბრუნება შეუძლებელი იქნება",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'დარწმუნებული ვარ',
+                cancelButtonText: 'გაუქმება'
+            }).then((result) => {
+                if (result.value) {
+
+                    let href = e.target.href;
+                    let deleteWord = new Ajax({url:href});
+                    deleteWord.ok.then((d) => {
+                        this.getWords()
+                        this.update();
+                    });
+                    deleteWord.ok.catch((err) => {
+                        return err
+                    });
+                    swal(
+                        'სიტყვა წაიშალა!',
+                        '',
+                        'success'
+                    )
+                }
+            })
+
+        },
+        showEditWordModal:function (e,id) {
+            let path = `${url.home()}/welcome/wordJson/${id}`;
+            this.modal.url = id;
+            let ajax = new Ajax({url: path});
+            ajax.ok.then(data => {
+                "use strict";
+                let word = JSON.parse(data);
+                this.modal.newWord = word.newWord;
+                this.modal.assoc = word.assoc;
+                this.modal.connection = word.connection;
+                this.modal.meaning = word.meaning;
+            }).catch(err => console.log(err));
+
+},
+
+        loadMore:function () {
+                this.limit+=10;
+                this.getWords();
+        },
+        addWord:function() {
+            "use strict";
+            this.modal = {
+                title:`add `,
+                newWord:``,
+                assoc:``,
+                connection:``,
+                meaning:``,
+                url:``,
+            }
+        },
+        getWords:function () {
+            "use strict";
+            let ajax = new Ajax({
+                url: `${url.home()}/welcome/wordsJson/${this.start}/${this.limit}`,
+            });
+
+            ajax.ok.then((data)=>{
+                this.sharedData.words = JSON.parse(data) ;
+                this.update();
+            }).catch((err)=>{
+                console.log(err)
+            });
+
+        },
+        update:function () {
+            this.$forceUpdate();
+            setTimeout(()=>{
+                this.makeEditBtns();
+            },1e2)
+        }
+    },
+    created:function (){
+        "use strict";
+        console.log('created');
+    },
+    mounted:function() {
+        "use strict";
+        console.log('mounted');
+        this.getWords();
+    }
+});

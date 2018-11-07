@@ -10,7 +10,8 @@
 // $color3: #eba194;
 // $color4: #dac6ca;
 // $color5: #32639d;
-
+[v-cloak] > * { display:none }
+[v-cloak]::before { content: "loading…" }
 $color1: #E91E63;
 $color2: #FFEB3B;
 $color3: #212121;

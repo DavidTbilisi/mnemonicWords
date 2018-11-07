@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<button @click="addWord" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 	<?=$this->lang->line('add_button')?>
 </button>
 
@@ -8,7 +8,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h3 class="modal-title" id="exampleModalLabel"><?=$this->lang->line('add_title')?></h3>
+				<h3 class="modal-title" id="exampleModalLabel">{{modal.title}}<?=$this->lang->line('add_title')?></h3>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -16,31 +16,34 @@
 			<div class="modal-body">
 
 				<div class="add-words">
-					<form action="<?php echo site_url() . '/save' ?>" method="post">
+					<form :action="`<?=site_url() . '/save' ?>/${modal.url}`" method="post">
 						<div class="flex">
-
 							<input class="form-control form-control-lg"
                                    placeholder="<?=$this->lang->line('add_word')?>"
                                    name="newWord"
                                    type="text"
-                                   title="ახალი (უცნობი) სიტყვა">
+                                   title="ახალი (უცნობი) სიტყვა"
+                            v-model="modal.newWord">
 
 							<input class="form-control form-control-lg"
                                    placeholder="<?=$this->lang->line('add_assoc')?>"
                                    name="assoc"
                                    type="text"
+                                   v-model="modal.assoc"
                                    title="შეიყვანეთ ახალ სიტყვასთან დაკავშირებული ასოციაცია">
 
 							<input class="form-control form-control-lg"
                                    placeholder="<?=$this->lang->line('add_word')?>"
                                    name="connection"
                                    type="text"
+                                   v-model="modal.connection"
                                    title="გააერთიანეთ ახალი სიტყვა, ასოციაცია და მნიშვნელობა">
 
 							<input class="form-control form-control-lg"
                                    placeholder="<?=$this->lang->line('add_meaning')?>"
                                    name="meaning"
                                    type="text"
+                                   v-model="modal.meaning"
                                    title="ახალი სიტყვის მნიშვნელობა">
 
 							<input class="btn btn-primary mb-2"

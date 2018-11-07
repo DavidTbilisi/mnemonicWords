@@ -140,8 +140,27 @@ class Welcome extends Front_Controller {
 		}
 	}
 
-	public function wordsJson( $id = null ) {
-		$words = $this->words_m->get( $id );
+	public function wordsJson( $start = 0, $limit = 10 ) {
+
+		$this->db->from( 'words' );
+		$this->db->where( 'user_id = ' . $this->ion_auth->get_user_id() );
+		$this->db->order_by( 'id desc' );
+		$this->db->limit( $limit, $start );
+		$words = ( $this->db->get() )->result();
+
+		$this->output->set_content_type( 'application/json' )
+		             ->set_output( json_encode( $words, JSON_UNESCAPED_UNICODE ) )
+		             ->set_status_header( 200 );
+	}
+
+
+	public function wordJson( $id = null) {
+
+		$this->db->from( 'words' );
+		$this->db->where( 'user_id = ' . $this->ion_auth->get_user_id() );
+		$this->db->where( 'id = ' . $id );
+		$words = ( $this->db->get() )->row();
+
 		$this->output->set_content_type( 'application/json' )
 		             ->set_output( json_encode( $words, JSON_UNESCAPED_UNICODE ) )
 		             ->set_status_header( 200 );
@@ -192,13 +211,18 @@ class Welcome extends Front_Controller {
 	}
 
 	public function delete( $id ) {
-		$this->words_m->delete( $id );
-		redirect( site_url() );
+	if (isset($id)&&$id!=null&&!is_null($id)) {
+		 $this->words_m->delete( $id );
+		// print_r($id);
+	}
+		$this->output->set_content_type( 'application/json' )
+		             ->set_output( json_encode( ['result'=>'deleted'], JSON_UNESCAPED_UNICODE ) )
+		             ->set_status_header( 200 );
 	}
 
-	public function fillWords() {
+	public function fillWords($words =5) {
 		$this->load->helper( 'string' );
-		for ( $i = 0; $i < 90; $i ++ )
+		for ( $i = 0; $i < $words; $i ++ )
 		{
 			$data = array(
 				'newWord'    => random_string( 'alpha', random_int( 3, 15 ) ) . '_' . $i,
@@ -210,6 +234,7 @@ class Welcome extends Front_Controller {
 			);
 			$this->words_m->save( $data );
 		}
+		redirect(base_url());
 	}
 
 	public function save( $id = null ) {
