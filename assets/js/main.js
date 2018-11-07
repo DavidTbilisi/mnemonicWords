@@ -29,7 +29,6 @@ let f = new Funcs();
 let url;
 let bool = location.href.search('localhost') > -1;
 if (bool) {
-    console.log('url');
     url = location.href.search('dictionary') > -1?new Url('dictionary/index.php'):new Url('mnemonicWords/index.php');
 } else {
     url = new Url('learnwords/index.php');
@@ -96,8 +95,8 @@ global.david = (function () {
                 cancelButtonText: 'გაუქმება'
             }).then((result) => {
                 if (result.value) {
-                    let href = dom.nthParent(e.target, 1)[0].href;
-
+                    
+                    let href = e.target.href;
                     let deleteWord = new Ajax({url:href});
                     deleteWord.ok.then((d) => {
                         showSearchResult(d, 'replaceWith');
@@ -117,8 +116,9 @@ global.david = (function () {
         function showEditWordModal(e) {
             "use strict";
             let target = e.target;
-            let id = $(dom.nthParent(target, 2)[1]).data('id');
-            console.log(id);
+            let parent = dom.nthParent(target, 2);
+            let id = $(parent[0]).data('id');
+            console.log(parent, id );
             let actionPath = `${url.home()}/save/${id}`;
             let formAction = $(v.modal).find('form')[0];
             let path = `${url.home()}/welcome/wordsJson/${id}`;

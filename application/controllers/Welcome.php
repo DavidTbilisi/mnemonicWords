@@ -11,7 +11,8 @@ class Welcome extends Front_Controller {
 		parent::__construct();
 		$this->load->model( 'users_m' );
 		$this->load->model( 'words_m' );
-
+		$lang = $this->session->userdata("lang");
+		$this->lang->load('welcome', isset($lang) ? $lang:'georgian');
 		// $this->output->enable_profiler( true );
 
 		$this->db->from( 'words' );
@@ -290,5 +291,17 @@ class Welcome extends Front_Controller {
 		file_put_contents( $path, json_encode( $this->router->routes ) );
 	}
 
+	public function setLang( $lang ) {
+		$this->load->library('user_agent');
+		$this->session->lang = $lang;
+		echo $this->session->userdata("lang");
+		if ($this->agent->is_referral())
+		{
+			redirect($this->agent->referrer());
+		} else {
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+
+	}
 
 }

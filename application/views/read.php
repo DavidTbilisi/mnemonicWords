@@ -4,7 +4,7 @@
 <hr>
 <div>
 <?php $this->load->view( 'add-word' ) ?>
-    <span class="words-count"> სულ: <?=$words_count?></span>
+    <span class="words-count"><?=$this->lang->line('all_words');?>: <?=$words_count?></span>
 </div>
 <div class="row">
     <div class="col">
@@ -19,10 +19,10 @@
                 </div>
                 <div class="col">
                     <ul class="list-unstyled">
-                        <li class="col-12"> სიტყვა      </li>
-                        <li class="col-12"> ასოციაცია   </li>
-                        <li class="col-12"> კავშირი     </li>
-                        <li class="col-12"> მნიშვნელობა </li>
+                        <li class="col-12"> <?=$this->lang->line('word');?></li>
+                        <li class="col-12"> <?=$this->lang->line('assoc');?></li>
+                        <li class="col-12"> <?=$this->lang->line('connection');?></li>
+                        <li class="col-12"> <?=$this->lang->line('meaning');?></li>
                     </ul>
                 </div>
             </div>
@@ -68,12 +68,12 @@
 			<?php
             endforeach;
 			else:
-                echo "<h1>ასეთი სიტყვა ვერ მოიძებნა</h1>";
+                echo "<h1>{$this->lang->line('not_found')}</h1>";
 			endif;
             ?>
         </div>
         <div class="load_more">
-            <buttom class="btn btn-primary">Load More</buttom>
+            <buttom class="btn btn-primary"><?=$this->lang->line('load_more')?></buttom>
         </div>
 
 <?php $this->load->view('instruction')  ?>

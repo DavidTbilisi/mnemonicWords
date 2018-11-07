@@ -40,24 +40,23 @@
             <?php endif;  ?>
 
 
-           
-         <!--   <li class="nav-item">
-                <a class="nav-link" aria-disabled="disabled" href="<?= site_url('migrate')?>">Migrate</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?/*= site_url('import') */?>">import words</a>
-            </li>
+<!--           -->
+<!--          <li class="nav-item">-->
+<!--                <a class="nav-link" aria-disabled="disabled" href="--><?//= site_url('migrate')?><!--">Migrate</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="--><?///*= site_url('import') */?><!--">import words</a>-->
+<!--            </li>-->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
+                    Lang
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="<?= site_url('welcome/setLang/georgian')  ?>">ქართული</a>
+                    <a class="dropdown-item" href="<?= site_url('welcome/setLang/english')  ?>">English</a>
                 </div>
-            </li>-->
+            </li>
         </ul>
     </div>
 

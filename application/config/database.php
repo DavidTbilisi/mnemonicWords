@@ -79,6 +79,12 @@ $db['default'] = array(
 	'username' => 'root',
 	'password' => '',
 	'database' => 'learnwords',
+/*
+	'hostname' => 'sql202.byethost.com',
+	'username' => 'b11_19061961',
+	'password' => 'gn04dfqj',
+	'database' => 'b11_19061961_words',
+*/
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
