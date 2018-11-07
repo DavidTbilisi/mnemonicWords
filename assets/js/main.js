@@ -51,138 +51,9 @@ global.david = (function () {
 
     let octopus = (function (v) {
 
-        function makeEditBtns() {
-            "use strict";
-             // $(document).find('.words-mobile ul').draggable({
-             //     axis: "x",
-             //    spanMode:'both',
-             //    drag: function(event, ui) {
-             //        let element = dom.nthParent(this, 3);
-             //
-             //        if (ui.position.left < -20) {
-             //            $(element).find('.covered').addClass('revield');
-             //            // ლიმიტი მარცხნივ გაწევაზე
-             //            ui.position.left = Math.max( -60, ui.position.left );
-             //            //     ui.position.left = -60;
-             //        } else if (ui.position.left > -10 ) {
-             //            $(element).find('.covered').removeClass('revield');
-             //            // ლიმიტი მარჯვნივ გაწევაზე
-             //            ui.position.left = Math.min( 0, ui.position.left );
-             //            // ui.position.left = -0;
-             //
-             //        }
-             //
-             //    }
-             // })
-
-        }
-
-        function confirmDelete(e) {
-            "use strict";
-            // e.preventDefault();
-            // swal({
-            //     title: 'დარწმუნებული ხართ რომ გინდათ ამ სიტყვის წაშლა?',
-            //     text: "სიტყვის დაბრუნება შეუძლებელი იქნება",
-            //     type: 'warning',
-            //     showCancelButton: true,
-            //     confirmButtonColor: '#3085d6',
-            //     cancelButtonColor: '#d33',
-            //     confirmButtonText: 'დარწმუნებული ვარ',
-            //     cancelButtonText: 'გაუქმება'
-            // }).then((result) => {
-            //     if (result.value) {
-            //
-            //         let href = e.target.href;
-            //         let deleteWord = new Ajax({url:href});
-            //         deleteWord.ok.then((d) => {
-            //             showSearchResult(d, 'replaceWith');
-            //         });
-            //         deleteWord.ok.catch((err) => {
-            //             return err
-            //         });
-            //         swal(
-            //             'სიტყვა წაიშალა!',
-            //             '',
-            //             'success'
-            //         )
-            //     }
-            // })
-        }
-
-        function showEditWordModal(e) {
-            "use strict";
-            // let target = e.target;
-            // let parent = dom.nthParent(target, 2);
-            // let id = $(parent[0]).data('id');
-            // console.log(parent, id );
-            // let actionPath = `${url.home()}/save/${id}`;
-            // let formAction = $(v.modal).find('form')[0];
-            // let path = `${url.home()}/welcome/wordsJson/${id}`;
-            //
-            // let ajax = new Ajax({url: path});
-            //
-            // ajax.ok.then(data => {
-            //     let word = JSON.parse(data);
-            //     $(formAction).attr('action', actionPath);
-            //     $(v.modal).prepend(`<input hidden type="text" name="id" value="${word.id}">`);
-            //     $(v.modal).find('.modal-title').text('შეცვალე სიტყვები');
-            //     $(v.modal).find('input[name=newWord]').val(word.newWord);
-            //     $(v.modal).find('input[name=assoc]').val(word.assoc);
-            //     $(v.modal).find('input[name=connection]').val(word.connection);
-            //     $(v.modal).find('input[name=meaning]').val(word.meaning);
-            // }).catch(err => console.log(err))
-        }
-
-        function showSearchResult(data, action = 'replaceWith') {
-            if (action === "replaceWith") {
-                $('.words-mobile').replaceWith($(data).find('.words-mobile'))
-            } else if (action === "append") {
-                let rows = $(data).find('.words-mobile').children('.row');
-                $('.words-mobile').append(rows.slice(1, rows.length));
-            }
-            makeEditBtns();
-        }
-
-
-        let limit = 10, start = 10;
-
-        // function loadMore() {
-        //
-        //     let ajax = new Ajax({
-        //         url: `${url.home()}/`,
-        //         method: 'post',
-        //         data: {
-        //             start: start,
-        //             limit: limit
-        //         }
-        //     });
-        //
-        //     ajax.ok.then((data) => {
-        //         "use strict";
-        //         start += limit;
-        //         showSearchResult(data, 'append');
-        //
-        //     })
-
-        // }
-
-
-        function update() {
-            "use strict";
-            $(document).ready(function () {
-                makeEditBtns();
-                $(document).find('.edit-word').on('click', function (e) {
-                    e.preventDefault();
-                    showEditWordModal(e);
-                });
-            })
-
-
-        }
 
         function init() {
             "use strict";
-            makeEditBtns();
             $('.details textarea').summernote({
                 dialogsInBody: true,
                 codemirror: { // codemirror options
@@ -210,56 +81,6 @@ global.david = (function () {
         }
         init();
 
-        $(document).on('click', v.editWord, function (e) {
-            e.preventDefault();
-            showEditWordModal(e);
-        });
-
-        $(document).on('keyup', v.search, function () {
-
-            let ajax = new Ajax({
-                url: `${url.home()}/welcome/searchResult/`,
-                data: {search: $(v.search).val()},
-                method: "post"
-            });
-
-
-            ajax.ok.then(d => {
-                showSearchResult(d)
-            }).catch(err => console.log(err))
-
-        });
-
-        // $(document).on('click', v.loadMore, function () {
-        //     loadMore();
-        // });
-
-        $(document).on('click', v.delete, function (e) {
-            confirmDelete(e);
-        });
-
-        $(document).on('click', v.det_save, function (e) {
-            e.preventDefault();
-
-           let saveDetails = new Ajax({
-               url:`${url.home()}/detailsSave/${url.arr(2)}`,
-               data:{
-                   text: $('.details textarea').summernote('code'),
-                   words_id: url.arr(2)
-               },
-               method:'post'
-           });
-
-
-           saveDetails.ok.then(function(data){
-               console.log(data);
-               $('.details textarea').summernote('destroy');
-               init();
-           }).catch(function (err) {
-               console.log(err)
-           })
-
-        });
 
         return {dom, Ajax}
     })(view);
@@ -269,6 +90,7 @@ global.david = (function () {
 
 global.sharedData = {
   name: 'from vue js',
+    words:''
 };
 
 
@@ -286,7 +108,6 @@ global.v = new Vue({
             meaning:``,
             url:``,
         },
-        words: ''
     },
     methods: {
         makeEditBtns:function () {
@@ -330,7 +151,7 @@ global.v = new Vue({
                     let href = e.target.href;
                     let deleteWord = new Ajax({url:href});
                     deleteWord.ok.then((d) => {
-                        this.getWords()
+                        this.getWords();
                         this.update();
                     });
                     deleteWord.ok.catch((err) => {
