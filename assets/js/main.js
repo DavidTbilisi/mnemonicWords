@@ -36,58 +36,6 @@ if (bool) {
 }
 
 
-global.david = (function () {
-    let view = (function () {
-
-        return {
-            editWord: '.edit-word',
-            loadMore: '.load_more',
-            modal: '#exampleModal',
-            search: 'nav input[type=text]',
-            delete: '.delete-word',
-            det_save:'.det-save',
-        }
-    })();
-
-    let octopus = (function (v) {
-
-
-        function init() {
-            "use strict";
-            $('.details textarea').summernote({
-                dialogsInBody: true,
-                codemirror: { // codemirror options
-                    theme: 'monokai'
-                },
-                height:150,
-                popover: {
-                    air: [
-                        ['color', ['color']],
-                        ['font', ['bold', 'underline', 'clear']]
-                    ]
-                },
-                toolbar: [
-                    // [groupName, [list of button]]
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough', 'superscript', 'subscript']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ],
-
-                ]
-            });
-
-        }
-        init();
-
-
-        return {dom, Ajax}
-    })(view);
-
-    return {view, octopus, f, Funcs, url, dom}
-})();
-
 global.sharedData = {
   name: 'from vue js',
     words:''
@@ -111,7 +59,6 @@ global.v = new Vue({
     },
     methods: {
         makeEditBtns:function () {
-            console.log('edit buttons baked');
             $(document).find('.words-mobile ul').draggable({
                 axis: "x",
                 spanMode:'both',
@@ -128,11 +75,10 @@ global.v = new Vue({
                         // ლიმიტი მარჯვნივ გაწევაზე
                         ui.position.left = Math.min( 0, ui.position.left );
                         // ui.position.left = -0;
-
                     }
-
                 }
-            })
+            });
+            console.log('edit buttons baked');
         },
         confirmDelete:function (e) {
             e.preventDefault();
@@ -153,6 +99,7 @@ global.v = new Vue({
                     deleteWord.ok.then((d) => {
                         this.getWords();
                         this.update();
+
                     });
                     deleteWord.ok.catch((err) => {
                         return err
@@ -180,7 +127,6 @@ global.v = new Vue({
             }).catch(err => console.log(err));
 
 },
-
         loadMore:function () {
                 this.limit+=10;
                 this.getWords();
@@ -215,6 +161,31 @@ global.v = new Vue({
             setTimeout(()=>{
                 this.makeEditBtns();
             },1e2)
+        },
+        summernote:function () {
+            $('.details textarea').summernote({
+                dialogsInBody: true,
+                codemirror: { // codemirror options
+                    theme: 'monokai'
+                },
+                height:150,
+                popover: {
+                    air: [
+                        ['color', ['color']],
+                        ['font', ['bold', 'underline', 'clear']]
+                    ]
+                },
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    [ 'view', [ 'undo', 'redo', 'fullscreen', 'codeview', 'help' ] ],
+
+                ]
+            });
         }
     },
     created:function (){
@@ -225,5 +196,6 @@ global.v = new Vue({
         "use strict";
         console.log('mounted');
         this.getWords();
+        this.summernote();
     }
 });

@@ -21,16 +21,11 @@ class Welcome extends Front_Controller {
 		$this->words_count = ( $this->db->get() )->result();
 	}
 
-	public function index( $start = 0, $limit = 10 ) {
-		if ( $this->input->post( 'start' ) )
-		{
-			$start = $this->input->post( 'start' );
-			$limit = $this->input->post( 'limit' );
-		}
+	public function index( $start = 0, $limit = 10, $sort = "id desc") {
 
 		$this->db->from( 'words' );
 		$this->db->where( 'user_id = ' . $this->ion_auth->get_user_id() );
-		$this->db->order_by( 'id desc' );
+		$this->db->order_by( $sort );
 		$this->db->limit( $limit, $start );
 		$words = ( $this->db->get() )->result();
 

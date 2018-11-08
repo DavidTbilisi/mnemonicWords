@@ -4,7 +4,21 @@
 <hr>
 <div>
 	<?php $this->load->view( 'add-word' ) ?>
-    <span class="words-count"><?= $this->lang->line( 'all_words' ); ?>: <?= $words_count ?></span>
+    <span class="words-count"><?= $this->lang->line( 'all_words' ); ?>: <?= $words_count ?>|</span>
+    <span class="dropdown">
+        <button href="#"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                class="dropdown-toggle btn btn-primary"
+                id="sortinging"><?=$this->lang->line('sort_by')?></button>
+          <div class="dropdown-menu dropdown-menu-right">
+    <button class="dropdown-item" type="button">დამატების მიხედვით</button>
+    <button class="dropdown-item" type="button">შეცვლის მიხედვით</button>
+    <button class="dropdown-item" type="button">ანბანის მიხედვით (უცხო სიტყვების)</button>
+    <button class="dropdown-item" type="button">ანბანის მიხედვით (მშობლიური სიტყვების)</button>
+  </div>
+    </span>
 </div>
 <div class="row">
     <div class="col">
