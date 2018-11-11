@@ -56,6 +56,18 @@ global.v = new Vue({
             meaning:``,
             url:``,
         },
+        admin:{
+           nav:[
+               {icon:'fa fa-home',name:"მთავარი", link: "admin"},
+               {icon:'fa fa-users',name:"მომხმარებლები და ჯგუფები", link: "admin/dashboard/users"},
+               {icon:'fa fa-trash-o',name:"წაშლილი", link: "#"},
+               {icon:'fa fa-check',name:"შესრულებული", link: "#"},
+               {icon:'fa fa-download',name:"გადმოწერა", link: "#"},
+               {icon:'fa fa-file-o',name:"ფაილები", link: "#"},
+               {icon:'fa fa-camera',name:"სურათები", link: "#"},
+           ],
+            user:''
+        }
     },
     methods: {
         makeEditBtns:function () {
@@ -186,6 +198,19 @@ global.v = new Vue({
 
                 ]
             });
+        },
+        getUser:function () {
+           new Ajax({
+                url:`${url.home()}/admin/dashboard/getuser`,
+                method:"post",
+                data:{uuuser:true}
+            }).ok.then(d => {
+                "use strict";
+                this.admin.user = JSON.parse(d);
+            }).catch(err => {
+                "use strict";
+                console.log(err)
+            })
         }
     },
     created:function (){
@@ -197,5 +222,6 @@ global.v = new Vue({
         console.log('mounted');
         this.getWords();
         this.summernote();
+        this.getUser();
     }
 });

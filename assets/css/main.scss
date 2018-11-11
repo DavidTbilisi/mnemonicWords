@@ -41,7 +41,9 @@ $color5: #BDBDBD;
 html, body{
   font-size: 1.8rem;
 }
-
+#root{
+  margin: 0 -15px;
+}
 
 a,
 a:hover {
@@ -226,3 +228,7 @@ a:hover {
   font-size: 1.4rem;
   padding: 6px 0;
 }
+
+
+
+@import "admin";

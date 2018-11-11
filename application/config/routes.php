@@ -57,6 +57,9 @@ $route['delete/(:num)'] = 'welcome/delete/$1';
 $route['details/(:num)'] = 'welcome/details/$1';
 $route['detailsSave/(:num)'] = 'welcome/detailsSave/$1';
 
+$route['admin'] = 'admin/dashboard';
+$route['settings'] = 'admin/dashboard/settings';
+
 $route['register'] = 'auth/create_user';
 $route['login'] = 'auth/login';
 $route['logout'] = 'auth/logout';
@@ -64,5 +67,5 @@ $route['logout'] = 'auth/logout';
 
 $route['migrate'] = 'admin/migration';
 $route['import'] = 'welcome/import';
-$route['404_override'] = 'welcome';
+//$route['404_override'] = 'welcome';
 $route['translate_uri_dashes'] = FALSE;

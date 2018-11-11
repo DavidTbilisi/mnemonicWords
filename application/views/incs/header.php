@@ -25,6 +25,6 @@
 </head>
 <body>
 
-<div class="container" >
+<div class="container-fluid" >
 
     <div id="root"> <?php // this is from vue js  ?>
