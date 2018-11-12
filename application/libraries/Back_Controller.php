@@ -10,5 +10,11 @@ class Back_Controller extends MY_Controller {
 	public function __construct() {
 		parent::__construct();
 		// echo __CLASS__;
+
+
+		if (!$this->ion_auth->logged_in())
+		{
+			redirect('login');
+		}
 	}
 }
