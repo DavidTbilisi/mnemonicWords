@@ -3,9 +3,7 @@
 	<div class="col content">
 		<?php $this->load->view('admin/top_line')  ?>
 
-		users
-
-
+<?php dd($users)  ?>
 
 	</div>
 </div>

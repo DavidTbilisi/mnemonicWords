@@ -11,18 +11,21 @@ class Dashboard extends Back_Controller {
 	private $user;
 	public function __construct() {
 		parent::__construct();
-		$this->user = $this->ion_auth->user()->row();
 		// print_r($this->user);
+		$this->all['data'] = $this->data;
+		$this->all['user'] = $this->ion_auth->user()->row();
+
 	}
 
 	public function index(  ) {
-		$this->load->view('incs/header',["data"=>$this->data,'user'=>$this->user]);
+
+		$this->load->view('incs/header',["data"=>$this->all]);
 		$this->load->view('admin/dashboard');
 		$this->load->view('incs/footer');
 	}
 
 	public function settings(  ) {
-		$this->load->view('incs/header',["data"=>$this->data,'user'=>$this->user]);
+		$this->load->view('incs/header',["data"=>$this->all]);
 		$this->load->view('admin/settings');
 		$this->load->view('incs/footer');
 	}
@@ -35,6 +38,9 @@ class Dashboard extends Back_Controller {
 
 
 	public function users(  ) {
-
+		$users = $this->ion_auth->users()->result();
+		$this->load->view('incs/header',["data"=>$this->all, 'users' => $users]);
+		$this->load->view('admin/users');
+		$this->load->view('incs/footer');
 	}
 }

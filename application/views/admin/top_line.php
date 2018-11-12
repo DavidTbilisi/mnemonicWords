@@ -9,7 +9,13 @@
 		</div>
 	</div>
 	<div class="col-2 user text-right">
-		<h3><i class="fa fa-user mr-3"></i><?=$user->first_name?></h3>
+		<h3 data-toggle="collapse" data-target="#user_panel" aria-expanded="false" aria-controls="user_panel">
+            <i class="fa fa-user mr-3"></i><?=$data["user"]->first_name?>
+        </h3>
+
+        <div id="user_panel" class="collapse">
+            <a href="<?=base_url('logout')?>" class="btn btn-primary">გამოსვლა</a>
+        </div>
 	</div>
 	<div class="col-2 notifications text-right ">
 		<i class="ml-3 fa fa-bell"></i>

@@ -57,12 +57,17 @@ $route['delete/(:num)'] = 'welcome/delete/$1';
 $route['details/(:num)'] = 'welcome/details/$1';
 $route['detailsSave/(:num)'] = 'welcome/detailsSave/$1';
 
-$route['admin'] = 'admin/dashboard';
+$route['admin'] = 'index.php/admin/dashboard';
 $route['settings'] = 'admin/dashboard/settings';
+$route['users'] = 'admin/dashboard/users';
+$route['users/(:num)'] = 'admin/dashboard/users/$1';
 
 $route['register'] = 'auth/create_user';
 $route['login'] = 'auth/login';
 $route['logout'] = 'auth/logout';
+
+
+
 
 
 $route['migrate'] = 'admin/migration';

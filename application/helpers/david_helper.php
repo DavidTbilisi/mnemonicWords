@@ -16,12 +16,11 @@ function clog($data, $context="PHP: "){
 }
 
 function dd ($data){
-	$info = <<<DOC
-<pre>
+
+echo "<pre>";
 print_r($data);
-</pre>
-DOC;
-die ($info);
+echo "</pre>";
+die;
 }
 
 function csvToJson($filename,$isobj = null){
