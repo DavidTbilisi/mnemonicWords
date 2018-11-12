@@ -11,6 +11,11 @@ class Rest_Controller extends Back_Controller {
 		parent::__construct();
 //		$this->output->parse_exec_vars = true;
 //		$this->output->enable_profiler(TRUE);
+		if (!$this->ion_auth->is_admin())
+		{
+			$this->session->set_flashdata('message', 'You must be an admin to view this page');
+			redirect(base_url());
+		}
 	}
 
 
