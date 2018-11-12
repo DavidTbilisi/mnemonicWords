@@ -71,6 +71,7 @@ $route['logout'] = 'auth/logout';
 
 
 $route['migrate'] = 'admin/migration';
-$route['import'] = 'welcome/import';
+$route['import'] = 'io_csv/import';
+$route['export'] = 'io_csv/export';
 //$route['404_override'] = 'welcome';
 $route['translate_uri_dashes'] = FALSE;

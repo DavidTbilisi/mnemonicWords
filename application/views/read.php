@@ -15,7 +15,7 @@
           <div class="dropdown-menu dropdown-menu-right">
     <button class="dropdown-item" type="button">დამატების მიხედვით</button>
     <button class="dropdown-item" type="button">შეცვლის მიხედვით</button>
-    <button class="dropdown-item" type="button">ანბანის მიხედვით (უცხო სიტყვების)</button>
+    <button class="dropdown-item" @click="newWord" type="button">ანბანის მიხედვით (უცხო სიტყვების)</button>
     <button class="dropdown-item" type="button">ანბანის მიხედვით (მშობლიური სიტყვების)</button>
   </div>
     </span>

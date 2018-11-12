@@ -48,6 +48,8 @@ global.v = new Vue({
        sharedData,
         limit:10,
         start:0,
+        sort:'id',
+        order:'desc',
         modal:{
             title:`vue title `,
             newWord:``,
@@ -157,7 +159,7 @@ global.v = new Vue({
         getWords:function () {
             "use strict";
             let ajax = new Ajax({
-                url: `${url.home()}/welcome/wordsJson/${this.start}/${this.limit}`,
+                url: `${url.home()}/api/wordsJson/${this.start}/${this.limit}/${this.sort}/${this.order}`,
             });
 
             ajax.ok.then((data)=>{
@@ -211,8 +213,14 @@ global.v = new Vue({
                 "use strict";
                 console.log(err)
             })
+        },
+        // sorting & ordering
+        newWord:function () {
+            this.sort='newWord';this.order=this.order=='asc'?'desc':'asc';
+            this.getWords();
         }
-    },
+    }
+    ,
     created:function (){
         "use strict";
         console.log('created');

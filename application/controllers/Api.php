@@ -5,6 +5,8 @@ class Api extends Rest_Controller {
 
 	public function __construct() {
 		parent::__construct();
+		$this->ui = $this->session->userdata('user_id');
+
 	}
 
 	public function index() {
@@ -40,5 +42,13 @@ class Api extends Rest_Controller {
 		endif;
 	}
 
+	public function wordsJson( $start = 0, $limit = 10 , $sort='id', $order = 'desc') {
+		$this->db->from( 'words' );
+		$this->db->where( 'user_id = ' . $this->ui );
+		$this->db->order_by( "{$sort} {$order}" );
+		$this->db->limit( $limit, $start );
+		$words = ( $this->db->get() )->result();
 
+		return $this->json($words);
+	}
 }
