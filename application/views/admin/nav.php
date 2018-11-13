@@ -1,16 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark sticky-top ">
 
-    <a class="navbar-brand" href="<?= base_url();  ?>">
-        <img src="https://cdn.dribbble.com/users/25514/screenshots/1873731/movers-logo-design-branding-identity-ramotion.png"
-             width="30" alt="">
-        <span>Learn Words</span>
+    <a class="logo navbar-brand" href="<?= base_url();  ?>">
+        
     </a>
 
-<?php if ($this->uri->segment(1,'no') != "details") :  ?>
-    <div class="form-inline">
-        <input class="form-control " type="text" placeholder="Search">
-    </div>
-<?php endif;  ?>
+    <?php if ($this->uri->segment(1,'no') != "details") :  ?>
+        <div class="form-inline" id="search">
+            <input class="form-control " type="text" placeholder="Search">
+        </div>
+    <?php endif;  ?>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,8 +56,41 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>-->
-        </ul>
+      <!-- </ul> -->
+    <!-- </div> -->
+
+<!-- </nav> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <div class="container">
+    <a class="navbar-brand logo" href="#">
+        <img src="../assets/images/logo/logo.png" width="30" alt="">    
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+        <!-- Navigation menu -->
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0" id="search">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    </form>
     </div>
-
+</div>
 </nav>
-

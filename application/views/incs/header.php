@@ -24,5 +24,3 @@
 	<title><?php print_r( element('site_name',$data, config_item('site_name'))  )?></title>
 </head>
 <body>
-
-<div class="container">

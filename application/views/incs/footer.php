@@ -1,4 +1,4 @@
-</div> <?php // end of container ?>
+<?php // end of container ?>
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
