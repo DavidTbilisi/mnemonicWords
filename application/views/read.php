@@ -47,7 +47,7 @@
                         </div>
                         <div class="col">
                             <ul class="lang-items list-unstyled">
-                                <li> <?= $word->newWord ?>      </li>
+                                <li> <?= $word->new_word ?>      </li>
                                 <li> <?= $word->assoc ?>        </li>
                                 <li> <?= $word->connection ?>   </li>
                                 <li> <?= $word->meaning ?>      </li>
