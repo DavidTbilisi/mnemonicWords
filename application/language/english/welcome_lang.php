@@ -16,7 +16,7 @@ $lang['connection'] = 'connection';
 $lang['meaning'] = 'meaning';
 
 $lang['not_found'] = 'the word not found';
-$lang['load_more'] = 'load more';
+$lang['load_more'] = 'Load more items...';
 $lang['all_words'] = 'all';
 
 

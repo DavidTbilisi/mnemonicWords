@@ -45,7 +45,7 @@
 <!--            <li class="nav-item">-->
 <!--                <a class="nav-link" href="--><?///*= site_url('import') */?><!--">import words</a>-->
 <!--            </li>-->
-            <li class="nav-item dropdown">
+            <button class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     Lang
@@ -54,8 +54,7 @@
                     <a class="dropdown-item" href="<?= site_url('welcome/setLang/georgian')  ?>">ქართული</a>
                     <a class="dropdown-item" href="<?= site_url('welcome/setLang/english')  ?>">English</a>
                 </div>
-<<<<<<< HEAD
-            </li>-->
+            </button>
       <!-- </ul> -->
     <!-- </div> -->
 
@@ -68,11 +67,6 @@
 
 
 
-=======
-            </li>
-        </ul>
-    </div>
->>>>>>> 3133bf639a1bf853eb57a2e932f599d37470dce2
 
 
 
@@ -81,7 +75,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <div class="container">
     <a class="navbar-brand logo" href="#">
-        <img src="../assets/images/logo/logo.png" width="30" alt="">    
+        <img src="<?=base_url("assets/images/logo/logo.png")?>" width="30" alt="">    
     </a>
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">

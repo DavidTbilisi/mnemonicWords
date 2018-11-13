@@ -12,8 +12,7 @@
     <div class="row">
         <div class="col">
 
-<<<<<<< HEAD
-=======
+
         <div class="words-mobile">
             <div class="row">
                 <div class="col-1 hv-center">
@@ -30,24 +29,7 @@
                     </ul>
                 </div>
             </div>
->>>>>>> 3133bf639a1bf853eb57a2e932f599d37470dce2
 
-            <div class="words-mobile">
-                <div class="row">
-                    <div class="col-1 hv-center">
-                        <div class="circle hv-center">
-                            #
-                        </div>
-                    </div>
-                    <div class="col">
-                        <ul class="list-unstyled">
-                            <li class="col-12"> სიტყვა      </li>
-                            <li class="col-12"> ასოციაცია   </li>
-                            <li class="col-12"> კავშირი     </li>
-                            <li class="col-12"> მნიშვნელობა </li>
-                        </ul>
-                    </div>
-                </div>
 
                 <?php
                 if (count($words) > 0 ) :
@@ -87,29 +69,17 @@
                         </div>
                     </div>
 
-<<<<<<< HEAD
                 <?php
                 endforeach;
                 else:
-                    echo "<h1>ასეთი სიტყვა ვერ მოიძებნა</h1>";
+                    echo "<h1>{$this->lang->line('not_found')}</h1>";
                 endif;
                 ?>
             </div>
             <div class="load_more clearfix">
-                <button class="btn btn-primary"><i class="fa fa-spinner" aria-hidden="true"></i> Load more items...</button>
+                <button class="btn btn-primary"><i class="fa fa-spinner" aria-hidden="true"></i><?=$this->lang->line('load_more')?></button>
             </div>
-=======
-			<?php
-            endforeach;
-			else:
-                echo "<h1>{$this->lang->line('not_found')}</h1>";
-			endif;
-            ?>
-        </div>
-        <div class="load_more">
-            <buttom class="btn btn-primary"><?=$this->lang->line('load_more')?></buttom>
-        </div>
->>>>>>> 3133bf639a1bf853eb57a2e932f599d37470dce2
+
 
 <?php $this->load->view('instruction')  ?>
         </div>
