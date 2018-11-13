@@ -219,7 +219,7 @@ global.v = new Vue({
             this.sort='newWord';this.order=this.order=='asc'?'desc':'asc';
             this.getWords();
         },
-        newWord:function () {
+        other:function () {
             this.sort='newWord';this.order=this.order=='asc'?'desc':'asc';
             this.getWords();
         }

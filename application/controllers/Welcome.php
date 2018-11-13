@@ -177,8 +177,8 @@ class Welcome extends Front_Controller {
 		$w = R::find('words','id > 0');
 
 	foreach ($w as $word):
-$word->	edited_at = $this->timestemp;
-$word->	created_at = $this->timestemp;
+		$word->	edited_at = $this->timestemp;
+		$word->	created_at = $this->timestemp;
 		R::store($word);
 
 	endforeach;
