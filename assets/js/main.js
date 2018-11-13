@@ -218,9 +218,12 @@ global.v = new Vue({
         newWord:function () {
             this.sort='newWord';this.order=this.order=='asc'?'desc':'asc';
             this.getWords();
+        },
+        newWord:function () {
+            this.sort='newWord';this.order=this.order=='asc'?'desc':'asc';
+            this.getWords();
         }
-    }
-    ,
+    },
     created:function (){
         "use strict";
         console.log('created');
