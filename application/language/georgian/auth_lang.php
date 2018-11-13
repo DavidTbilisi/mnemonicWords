@@ -31,47 +31,47 @@ $lang['login_forgot_password'] = 'დამავიწყდა პაროლ
 
 // Index
 $lang['index_heading']           = 'მომხმარებელი';
-$lang['index_subheading']        = 'Below is a list of the users.';
+$lang['index_subheading']        = 'ქვემოთ მოყვანილია მომხმარებელთა სია';
 $lang['index_fname_th']          = 'სახელი';
 $lang['index_lname_th']          = 'გვარი';
 $lang['index_email_th']          = 'ელ.ფოსტა';
-$lang['index_groups_th']         = 'Groups';
+$lang['index_groups_th']         = 'ჯგუფები';
 $lang['index_status_th']         = 'სტატუსი';
-$lang['index_action_th']         = 'Action';
-$lang['index_active_link']       = 'Active';
+$lang['index_action_th']         = 'გააქტიურება';
+$lang['index_active_link']       = 'აქტიური';
 $lang['index_inactive_link']     = 'Inactive';
-$lang['index_create_user_link']  = 'Create a new user';
-$lang['index_create_group_link'] = 'Create a new group';
+$lang['index_create_user_link']  = 'შექმენით ახალი მომხმარებელი';
+$lang['index_create_group_link'] = 'შექმენით ახალი ჯგუფი';
 
 // Deactivate User
 $lang['deactivate_heading']                  = 'Deactivate User';
 $lang['deactivate_subheading']               = 'Are you sure you want to deactivate the user \'%s\'';
-$lang['deactivate_confirm_y_label']          = 'Yes:';
-$lang['deactivate_confirm_n_label']          = 'No:';
-$lang['deactivate_submit_btn']               = 'Submit';
-$lang['deactivate_validation_confirm_label'] = 'confirmation';
-$lang['deactivate_validation_user_id_label'] = 'user ID';
+$lang['deactivate_confirm_y_label']          = 'კი:';
+$lang['deactivate_confirm_n_label']          = 'არა:';
+$lang['deactivate_submit_btn']               = 'გაგზავნა';
+$lang['deactivate_validation_confirm_label'] = 'დადასტურება';
+$lang['deactivate_validation_user_id_label'] = 'მომხარებლის ID';
 
 // Create User
-$lang['create_user_heading']                           = 'Create User';
+$lang['create_user_heading']                           = 'შექმენით მომხმარებელი';
 $lang['create_user_subheading']                        = 'Please enter the user\'s information below.';
-$lang['create_user_fname_label']                       = 'First Name:';
-$lang['create_user_lname_label']                       = 'Last Name:';
-$lang['create_user_company_label']                     = 'Company Name:';
+$lang['create_user_fname_label']                       = 'სახელი:';
+$lang['create_user_lname_label']                       = 'გვარი:';
+$lang['create_user_company_label']                     = 'კომპანიის სახელი:';
 $lang['create_user_identity_label']                    = 'Identity:';
-$lang['create_user_email_label']                       = 'Email:';
-$lang['create_user_phone_label']                       = 'Phone:';
-$lang['create_user_password_label']                    = 'Password:';
-$lang['create_user_password_confirm_label']            = 'Confirm Password:';
-$lang['create_user_submit_btn']                        = 'Create User';
-$lang['create_user_validation_fname_label']            = 'First Name';
-$lang['create_user_validation_lname_label']            = 'Last Name';
+$lang['create_user_email_label']                       = 'ელ.ფოსტა:';
+$lang['create_user_phone_label']                       = 'ტელეფონი:';
+$lang['create_user_password_label']                    = 'პაროლი:';
+$lang['create_user_password_confirm_label']            = 'დაადასტურეთ პაროლი:';
+$lang['create_user_submit_btn']                        = 'მომხმარებლის შექმნა';
+$lang['create_user_validation_fname_label']            = 'სახელი';
+$lang['create_user_validation_lname_label']            = 'გვარი';
 $lang['create_user_validation_identity_label']         = 'Identity';
-$lang['create_user_validation_email_label']            = 'Email Address';
-$lang['create_user_validation_phone_label']            = 'Phone';
-$lang['create_user_validation_company_label']          = 'Company Name';
-$lang['create_user_validation_password_label']         = 'Password';
-$lang['create_user_validation_password_confirm_label'] = 'Password Confirmation';
+$lang['create_user_validation_email_label']            = 'ელ.ფოსტა';
+$lang['create_user_validation_phone_label']            = 'ტელეფონი';
+$lang['create_user_validation_company_label']          = 'კომპანიის სახელი';
+$lang['create_user_validation_password_label']         = 'პაროლი';
+$lang['create_user_validation_password_confirm_label'] = 'დაადასტურეთ პაროლი';
 
 // Edit User
 $lang['edit_user_heading']                           = 'Edit User';

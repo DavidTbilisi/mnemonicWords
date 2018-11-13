@@ -29,7 +29,7 @@ let f = new Funcs();
 let url;
 let bool = location.href.search('localhost') > -1;
 if (bool) {
-    url = new Url('dictionary/index.php');
+    url = location.href.search('dictionary') > -1?new Url('dictionary/index.php'):new Url('mnemonicWords/index.php');
 } else {
     url = new Url('learnwords/index.php');
 
@@ -55,18 +55,27 @@ global.david = (function () {
             "use strict";
              $(document).find('.words-mobile ul').draggable({
                  axis: "x",
+                spanMode:'both',
                 drag: function(event, ui) {
                      // console.log(event);
                      // console.log(ui);
-                     console.log(ui.position.left);
+                     // console.log(ui.position.left);
 
-                    let element = dom.nthParent(this, 2);
+                    let element = dom.nthParent(this, 3);
+
                     if (ui.position.left < -20) {
                         $(element).find('.covered').addClass('revield');
+                        // ლიმიტი მარცხნივ გაწევაზე
+                        ui.position.left = Math.max( -60, ui.position.left );
+                        //     ui.position.left = -60;
                     } else if (ui.position.left > -10 ) {
-                        $(this).position(ui.originalPosition);
                         $(element).find('.covered').removeClass('revield');
+                        // ლიმიტი მარჯვნივ გაწევაზე
+                        ui.position.left = Math.min( 0, ui.position.left );
+                        // ui.position.left = -0;
+
                     }
+
                 }
              })
 
@@ -86,8 +95,8 @@ global.david = (function () {
                 cancelButtonText: 'გაუქმება'
             }).then((result) => {
                 if (result.value) {
-                    let href = dom.nthParent(e.target, 1)[0].href;
-
+                    
+                    let href = e.target.href;
                     let deleteWord = new Ajax({url:href});
                     deleteWord.ok.then((d) => {
                         showSearchResult(d, 'replaceWith');
@@ -107,8 +116,9 @@ global.david = (function () {
         function showEditWordModal(e) {
             "use strict";
             let target = e.target;
-            let id = $(dom.nthParent(target, 2)[1]).data('id');
-            console.log(id);
+            let parent = dom.nthParent(target, 2);
+            let id = $(parent[0]).data('id');
+            console.log(parent, id );
             let actionPath = `${url.home()}/save/${id}`;
             let formAction = $(v.modal).find('form')[0];
             let path = `${url.home()}/welcome/wordsJson/${id}`;

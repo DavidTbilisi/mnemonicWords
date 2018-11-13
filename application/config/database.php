@@ -75,10 +75,16 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => '127.0.0.1',
 	'username' => 'root',
 	'password' => '',
 	'database' => 'learnwords',
+/*
+	'hostname' => 'sql202.byethost.com',
+	'username' => 'b11_19061961',
+	'password' => 'gn04dfqj',
+	'database' => 'b11_19061961_words',
+*/
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
