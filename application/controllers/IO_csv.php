@@ -67,7 +67,7 @@ class IO_csv extends Back_Controller {
 		{
 			$data = fgetcsv( $handle, 1000, "," );
 
-			$import = "INSERT into words (language,newWord,meaning,user_id)";
+			$import = "INSERT into words (language,new_word,meaning,user_id)";
 			$import .= "values('$data[0]','$data[2]','$data[3]','$ui' );";
 			echo $import;
 			// $this->db->query($import);
@@ -79,7 +79,7 @@ class IO_csv extends Back_Controller {
 	public function export( $format =  'csv') {
 		$this->load->dbutil();
 		$this->load->helper('download');
-		$sel = 'words.newWord, words.connection, words.assoc, words.meaning, ';
+		$sel = 'words.new_word, words.connection, words.assoc, words.meaning, ';
 		$sel.= 'details.text';
 		$this->db->from( 'words' );
 		$this->db->select( $sel );

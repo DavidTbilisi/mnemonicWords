@@ -19,7 +19,7 @@ class Migration_Create_words extends CI_Migration {
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
-			'newWord' => array(
+			'new_word' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',
 			),

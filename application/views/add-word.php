@@ -20,7 +20,7 @@
 						<div class="flex">
 							<input class="form-control form-control-lg"
                                    placeholder="<?=$this->lang->line('add_word')?>"
-                                   name="newWord"
+                                   name="new_word"
                                    type="text"
                                    title="ახალი (უცნობი) სიტყვა"
                             v-model="modal.newWord">

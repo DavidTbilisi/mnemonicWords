@@ -134,7 +134,7 @@ global.v = new Vue({
             ajax.ok.then(data => {
                 "use strict";
                 let word = JSON.parse(data);
-                this.modal.newWord = word.newWord;
+                this.modal.newWord = word.new_word;
                 this.modal.assoc = word.assoc;
                 this.modal.connection = word.connection;
                 this.modal.meaning = word.meaning;

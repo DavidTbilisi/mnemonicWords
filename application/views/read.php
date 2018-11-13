@@ -51,7 +51,7 @@
                 </div>
                 <div class="col">
                     <ul  class="lang-items list-unstyled">
-                        <li>   {{sharedData.words[index].newWord}}    </li>
+                        <li>   {{sharedData.words[index].new_word}}    </li>
                         <li>   {{sharedData.words[index].assoc}}    </li>
                         <li>   {{sharedData.words[index].connection}}    </li>
                         <li>   {{sharedData.words[index].meaning}}    </li>
