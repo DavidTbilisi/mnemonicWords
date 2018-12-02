@@ -56,6 +56,4 @@ clog($users);
 		$this->ion_auth->delete_user($id);
 		redirect('users');
 	}
-
-
 }

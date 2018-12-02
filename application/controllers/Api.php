@@ -44,6 +44,7 @@ class Api extends Rest_Controller {
 
 	public function wordsJson( $start = 0, $limit = 10 , $sort='id', $order = 'desc') {
 		$this->db->from( 'words' );
+		$this->db->select( ' new_word, connection, meaning, assoc, edited_at, created_at, id' );
 		$this->db->where( 'user_id = ' . $this->ui );
 		$this->db->order_by( "{$sort} {$order}" );
 		$this->db->limit( $limit, $start );

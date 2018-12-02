@@ -21,7 +21,10 @@
 			echo "<a href='$url'>$usr->username </a><a href='$url2'>x</a>";
 			echo "</p>";
 		endforeach; ?>
+
+        <a href="#">
         <button>ახალი მომხმარებლის შექმნა</button>
+        </a>
 
     </div>
 </div>

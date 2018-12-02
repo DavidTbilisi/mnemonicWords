@@ -38,7 +38,7 @@ $color5: #BDBDBD;
 }
 
 
-html, body{
+html, body, input, button{
   font-size: 1.8rem;
 }
 #root{
@@ -112,17 +112,18 @@ a:hover {
 
 .login {
   font-size: 1.6rem;
-  position: relative;
-  width: 100%;
-  height: 100%;
+  background-color: #3b4550;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &-title{
+    text-align:center;
+  }
   &-block {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    max-width: 300px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -25%);
+    padding:15px;
+    width: 25%;
+    border: 5px solid #979797;
+    background: #ffffffe0;
+    border-radius: 5px;
     input, button {
       font-size: 1.6rem;
     }
@@ -229,6 +230,9 @@ a:hover {
   padding: 6px 0;
 }
 
+.ligin{
+
+}
 
 
 @import "admin";

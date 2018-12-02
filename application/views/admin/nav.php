@@ -28,20 +28,51 @@
                     <a class="nav-link" href="<?= site_url('logout')?>">Logout <span class="sr-only">(current)</span></a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= site_url('manage')?>">Admin <span class="sr-only">(current)</span></a>
+                </li>
             <?php else:  ?>
 
             <li class="nav-item">
                 <a class="nav-link" href="<?= site_url('login')?>">Login <span class="sr-only">(current)</span></a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="<?= site_url('register')?>">Register <span class="sr-only">(current)</span></a>
             </li>
 
             <?php endif;  ?>
 
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="--><?///*= site_url('import') */?><!--">import words</a>-->
-<!--            </li>-->
+            <li class="nav-item">
+
+            </li>
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Import/Export
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="<?= site_url('import') ?>">import words</a>
+                    <a class="dropdown-item" href="<?= site_url('export') ?>">Export words</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Sort
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a @click="sortAndOrder('new_word')" class="dropdown-item" href="#">new word</a>
+                    <a @click="sortAndOrder('meaning')" class="dropdown-item" href="#">meaning</a>
+                    <a @click="sortAndOrder('edited_at')" class="dropdown-item" href="#">edit date</a>
+                    <a @click="sortAndOrder('created_at')" class="dropdown-item" href="#">create date</a>
+                    <a @click="sortAndOrder('connection')" class="dropdown-item" href="#">connection</a>
+                    <a @click="sortAndOrder('assoc')" class="dropdown-item" href="#">assocc</a>
+                </div>
+            </li>
 
 
             <li class="nav-item dropdown">

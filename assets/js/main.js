@@ -60,7 +60,7 @@ global.v = new Vue({
         },
         admin:{
            nav:[
-               {icon:'fa fa-home',name:"მთავარი", link: "admin"},
+               {icon:'fa fa-home',name:"მთავარი", link: "manage"},
                {icon:'fa fa-users',name:"მომხმარებლები და ჯგუფები", link: "admin/dashboard/users"},
                {icon:'fa fa-trash-o',name:"წაშლილი", link: "#"},
                {icon:'fa fa-check',name:"შესრულებული", link: "#"},
@@ -164,6 +164,7 @@ global.v = new Vue({
 
             ajax.ok.then((data)=>{
                 this.sharedData.words = JSON.parse(data) ;
+
                 this.update();
             }).catch((err)=>{
                 console.log(err)
@@ -215,14 +216,12 @@ global.v = new Vue({
             })
         },
         // sorting & ordering
-        newWord:function () {
-            this.sort='newWord';this.order=this.order=='asc'?'desc':'asc';
+        sortAndOrder:function (sort) {
+            this.sort=sort;
+            this.order=this.order === 'asc' ? 'desc' : 'asc';
             this.getWords();
         },
-        other:function () {
-            this.sort='newWord';this.order=this.order=='asc'?'desc':'asc';
-            this.getWords();
-        }
+
     },
     created:function (){
         "use strict";
