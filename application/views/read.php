@@ -31,47 +31,45 @@
                 </div>
 
                 <?php
-                if (count($words) > 0 ) :
+                if (count($words) > 0 ) : ?>
 
-                foreach ( $words as $index => $word ) :
-                    ?>
-                    <div class="row lang-item-container position-relative">
+                    <div v-for="( word, counter ) in sharedData.words" class="row lang-item-container position-relative">
                         <div class="col-1 hv-center">
-                            <a href="<?= base_url("/details/{$word->id}")  ?>">
-                            <div class="circle hv-center">
-                                <?php  echo isset($start)?  ++$start:++$index;?>
+                            <a :href="`<?= base_url("/details/")?>${word.id}`">
+                            <div v-cloak class="circle hv-center">
+                                {{++counter}}
                             </div>
                             </a>
-    <!--                        <input class="ml-5" type="checkbox">-->
+                                <!--<input class="ml-5" type="checkbox">-->
                         </div>
-                        <div class="col">
+                        <div v-cloak class="col">
                             <ul class="lang-items list-unstyled">
-                                <li> <?= $word->new_word ?>      </li>
-                                <li> <?= $word->assoc ?>        </li>
-                                <li> <?= $word->connection ?>   </li>
-                                <li> <?= $word->meaning ?>      </li>
+                                <li> {{word.new_word}}   </li>
+                                <li> {{word.assoc}}      </li>
+                                <li> {{word.connection}} </li>
+                                <li> {{word.meaning}}    </li>
                             </ul>
                         </div>
-                        <div class="covered" data-id="<?php echo $word->id ?>">
-                            <a
-                                class="edit-word"
-                                data-toggle="modal"
-                                data-target="#exampleModal"
-                                href="<?php echo site_url() . '/save/' . $word->id ?>"
-                            >
+                        <div class="covered" :data-id="word.id">
+                            <a class="edit-word"
+                               @click="showEditWordModal($event,word.id)"
+                               data-toggle="modal"
+                               data-target="#exampleModal"
+                               :href="`<?php echo site_url() ?>/save/${word.id}`">
                                 <i class="fa fa-pencil"></i>
                             </a>
 
-                            <a class="delete-word" href="<?php echo site_url() . '/delete/' . $word->id ?>">
+                            <a @click="confirmDelete($event)" class="delete-word" :href="`<?php echo site_url() . '/delete/'?>${word.id}`">
                                 <i class="icon-trash"></i>
                             </a>
                         </div>
                     </div>
 
+
                 <?php
-                endforeach;
+
                 else:
-                    echo "<h1>{$this->lang->line('not_found')}</h1>";
+                    echo "<h1 @click='loadMore' >{$this->lang->line('not_found')}</h1>";
                 endif;
                 ?>
             </div>
