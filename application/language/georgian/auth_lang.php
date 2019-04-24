@@ -74,13 +74,13 @@ $lang['create_user_validation_password_label']         = 'პაროლი';
 $lang['create_user_validation_password_confirm_label'] = 'დაადასტურეთ პაროლი';
 
 // Edit User
-$lang['edit_user_heading']                           = 'Edit User';
+$lang['edit_user_heading']                           = 'მომხმარებლის რედაქტირება';
 $lang['edit_user_subheading']                        = 'Please enter the user\'s information below.';
-$lang['edit_user_fname_label']                       = 'First Name:';
-$lang['edit_user_lname_label']                       = 'Last Name:';
-$lang['edit_user_company_label']                     = 'Company Name:';
-$lang['edit_user_email_label']                       = 'Email:';
-$lang['edit_user_phone_label']                       = 'Phone:';
+$lang['edit_user_fname_label']                       = 'სახელი:';
+$lang['edit_user_lname_label']                       = 'გვარი:';
+$lang['edit_user_company_label']                     = 'კომპანიის სახელი:';
+$lang['edit_user_email_label']                       = 'ელ.ფოსტა:';
+$lang['edit_user_phone_label']                       = 'ტელეფონი:';
 $lang['edit_user_password_label']                    = 'Password: (if changing password)';
 $lang['edit_user_password_confirm_label']            = 'Confirm Password: (if changing password)';
 $lang['edit_user_groups_heading']                    = 'Member of groups';

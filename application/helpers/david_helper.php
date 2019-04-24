@@ -43,6 +43,4 @@ function csvToJson($filename,$isobj = null){
 		return json_encode($csvData, JSON_FORCE_OBJECT |JSON_UNESCAPED_UNICODE );
 
 	}
-
-
 }

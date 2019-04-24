@@ -15,22 +15,22 @@
 */
 
 // Account Creation
-$lang['account_creation_successful']            = 'Account Successfully Created';
-$lang['account_creation_unsuccessful']          = 'Unable to Create Account';
-$lang['account_creation_duplicate_email']       = 'Email Already Used or Invalid';
+$lang['account_creation_successful']            = 'ანგარიში წარმატებით შეიქმნა';
+$lang['account_creation_unsuccessful']          = 'ანგარიშის შექმან შეუძლებელია';
+$lang['account_creation_duplicate_email']       = 'ელ ფოსტა უკვე გამოყენებულია ან არასწორია';
 $lang['account_creation_duplicate_identity']    = 'Identity Already Used or Invalid';
 $lang['account_creation_missing_default_group'] = 'Default group is not set';
 $lang['account_creation_invalid_default_group'] = 'Invalid default group name set';
 
 
 // Password
-$lang['password_change_successful']          = 'Password Successfully Changed';
-$lang['password_change_unsuccessful']        = 'Unable to Change Password';
+$lang['password_change_successful']          = 'პაროლი წარმატებით შეიცვალა';
+$lang['password_change_unsuccessful']        = 'პაროლის შეცვლა ვერ მოხერხდა';
 $lang['forgot_password_successful']          = 'Password Reset Email Sent';
 $lang['forgot_password_unsuccessful']        = 'Unable to email the Reset Password link';
 
 // Activation
-$lang['activate_successful']                 = 'Account Activated';
+$lang['activate_successful']                 = 'ანგარიში გააქტიურებულია';
 $lang['activate_unsuccessful']               = 'Unable to Activate Account';
 $lang['deactivate_successful']               = 'Account De-Activated';
 $lang['deactivate_unsuccessful']             = 'Unable to De-Activate Account';
