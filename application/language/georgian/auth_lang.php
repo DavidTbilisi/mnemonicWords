@@ -116,30 +116,30 @@ $lang['edit_group_validation_name_label']  = 'Group Name';
 $lang['edit_group_validation_desc_label']  = 'Description';
 
 // Change Password
-$lang['change_password_heading']                               = 'Change Password';
-$lang['change_password_old_password_label']                    = 'Old Password:';
-$lang['change_password_new_password_label']                    = 'New Password (at least %s characters long):';
-$lang['change_password_new_password_confirm_label']            = 'Confirm New Password:';
-$lang['change_password_submit_btn']                            = 'Change';
-$lang['change_password_validation_old_password_label']         = 'Old Password';
-$lang['change_password_validation_new_password_label']         = 'New Password';
-$lang['change_password_validation_new_password_confirm_label'] = 'Confirm New Password';
+$lang['change_password_heading']                               = 'პაროლის რედაქტირება';
+$lang['change_password_old_password_label']                    = 'ძველი პაროლი:';
+$lang['change_password_new_password_label']                    = 'ახალი პაროლი (at least %s characters long):';
+$lang['change_password_new_password_confirm_label']            = 'ახალი პაროლის დადასტურება';
+$lang['change_password_submit_btn']                            = 'რედაქტირება';
+$lang['change_password_validation_old_password_label']         = 'ძველი პაროლი';
+$lang['change_password_validation_new_password_label']         = 'ახალი პაროლი';
+$lang['change_password_validation_new_password_confirm_label'] = 'ახალი პაროლის დადასტურება';
 
 // Forgot Password
-$lang['forgot_password_heading']                 = 'Forgot Password';
+$lang['forgot_password_heading']                 = 'პაროლის დავიწყება';
 $lang['forgot_password_subheading']              = 'Please enter your %s so we can send you an email to reset your password.';
 $lang['forgot_password_email_label']             = '%s:';
 $lang['forgot_password_submit_btn']              = 'Submit';
-$lang['forgot_password_validation_email_label']  = 'Email Address';
+$lang['forgot_password_validation_email_label']  = 'ელ.ფოსტა';
 $lang['forgot_password_identity_label'] = 'Identity';
-$lang['forgot_password_email_identity_label']    = 'Email';
+$lang['forgot_password_email_identity_label']    = 'ელ.ფოსტა';
 $lang['forgot_password_email_not_found']         = 'No record of that email address.';
 $lang['forgot_password_identity_not_found']         = 'No record of that username.';
 
 // Reset Password
-$lang['reset_password_heading']                               = 'Change Password';
-$lang['reset_password_new_password_label']                    = 'New Password (at least %s characters long):';
-$lang['reset_password_new_password_confirm_label']            = 'Confirm New Password:';
-$lang['reset_password_submit_btn']                            = 'Change';
-$lang['reset_password_validation_new_password_label']         = 'New Password';
-$lang['reset_password_validation_new_password_confirm_label'] = 'Confirm New Password';
+$lang['reset_password_heading']                               = 'პაროლის რედაქტირება';
+$lang['reset_password_new_password_label']                    = 'ახალი პაროლი (at least %s characters long):';
+$lang['reset_password_new_password_confirm_label']            = 'ახალი პაროლის დადასტურება:';
+$lang['reset_password_submit_btn']                            = 'რეადაქტირება';
+$lang['reset_password_validation_new_password_label']         = 'ახალი პაროლი';
+$lang['reset_password_validation_new_password_confirm_label'] = 'ახალი პაროლის დადასტურება';
