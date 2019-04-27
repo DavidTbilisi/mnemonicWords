@@ -32,3 +32,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
+assets/Phrasebook_2018_12_02_22_32_09.csv

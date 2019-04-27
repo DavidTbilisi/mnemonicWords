@@ -36,31 +36,49 @@ if (bool) {
 }
 
 
-global.david = (function () {
-    let view = (function () {
+global.sharedData = {
+  name: 'from vue js',
+    words:''
+};
 
-        return {
-            editWord: '.edit-word',
-            loadMore: '.load_more',
-            modal: '#exampleModal',
-            search: 'nav input[type=text]',
-            delete: '.delete-word',
-            det_save:'.det-save',
+
+global.v = new Vue({
+   el:"#root",
+    data:{
+       sharedData,
+        limit:10,
+        start:0,
+        whereSearch:"new_word",
+        wordSearch:"",
+        sort:'id',
+        order:'desc',
+        modal:{
+            title:`vue title `,
+            newWord:``,
+            assoc:``,
+            connection:``,
+            meaning:``,
+            url:``,
+        },
+        admin:{
+           nav:[
+               {icon:'fa fa-home',name:"მთავარი", link: "manage"},
+               {icon:'fa fa-users',name:"მომხმარებლები და ჯგუფები", link: "admin/dashboard/users"},
+               {icon:'fa fa-trash-o',name:"წაშლილი", link: "#"},
+               {icon:'fa fa-check',name:"შესრულებული", link: "#"},
+               {icon:'fa fa-download',name:"გადმოწერა", link: "#"},
+               {icon:'fa fa-file-o',name:"ფაილები", link: "#"},
+               {icon:'fa fa-camera',name:"სურათები", link: "#"},
+           ],
+            user:''
         }
-    })();
-
-    let octopus = (function (v) {
-
-        function makeEditBtns() {
-            "use strict";
-             $(document).find('.words-mobile ul').draggable({
-                 axis: "x",
+    },
+    methods: {
+        makeEditBtns:function () {
+            $(document).find('.words-mobile ul').draggable({
+                axis: "x",
                 spanMode:'both',
                 drag: function(event, ui) {
-                     // console.log(event);
-                     // console.log(ui);
-                     // console.log(ui.position.left);
-
                     let element = dom.nthParent(this, 3);
 
                     if (ui.position.left < -20) {
@@ -73,16 +91,12 @@ global.david = (function () {
                         // ლიმიტი მარჯვნივ გაწევაზე
                         ui.position.left = Math.min( 0, ui.position.left );
                         // ui.position.left = -0;
-
                     }
-
                 }
-             })
-
-        }
-
-        function confirmDelete(e) {
-            "use strict";
+            });
+            console.log('edit buttons baked');
+        },
+        confirmDelete:function (e) {
             e.preventDefault();
             swal({
                 title: 'დარწმუნებული ხართ რომ გინდათ ამ სიტყვის წაშლა?',
@@ -95,11 +109,13 @@ global.david = (function () {
                 cancelButtonText: 'გაუქმება'
             }).then((result) => {
                 if (result.value) {
-                    
+
                     let href = e.target.href;
                     let deleteWord = new Ajax({url:href});
                     deleteWord.ok.then((d) => {
-                        showSearchResult(d, 'replaceWith');
+                        this.getWords();
+                        this.update();
+
                     });
                     deleteWord.ok.catch((err) => {
                         return err
@@ -111,82 +127,59 @@ global.david = (function () {
                     )
                 }
             })
-        }
 
-        function showEditWordModal(e) {
-            "use strict";
-            let target = e.target;
-            let parent = dom.nthParent(target, 2);
-            let id = $(parent[0]).data('id');
-            console.log(parent, id );
-            let actionPath = `${url.home()}/save/${id}`;
-            let formAction = $(v.modal).find('form')[0];
-            let path = `${url.home()}/welcome/wordsJson/${id}`;
-
+        },
+        showEditWordModal:function (e,id) {
+            let path = `${url.home()}/welcome/wordJson/${id}`;
+            this.modal.url = id;
             let ajax = new Ajax({url: path});
-
             ajax.ok.then(data => {
+                "use strict";
                 let word = JSON.parse(data);
-                $(formAction).attr('action', actionPath);
-                $(v.modal).prepend(`<input hidden type="text" name="id" value="${word.id}">`);
-                $(v.modal).find('.modal-title').text('შეცვალე სიტყვები');
-                $(v.modal).find('input[name=newWord]').val(word.newWord);
-                $(v.modal).find('input[name=assoc]').val(word.assoc);
-                $(v.modal).find('input[name=connection]').val(word.connection);
-                $(v.modal).find('input[name=meaning]').val(word.meaning);
-            }).catch(err => console.log(err))
-        }
+                this.modal.newWord = word.new_word;
+                this.modal.assoc = word.assoc;
+                this.modal.connection = word.connection;
+                this.modal.meaning = word.meaning;
+            }).catch(err => console.log(err));
 
-        function showSearchResult(data, action = 'replaceWith') {
-            if (action === "replaceWith") {
-                $('.words-mobile').replaceWith($(data).find('.words-mobile'))
-            } else if (action === "append") {
-                let rows = $(data).find('.words-mobile').children('.row');
-                $('.words-mobile').append(rows.slice(1, rows.length));
+},
+        loadMore:function () {
+                this.limit+=10;
+                this.getWords();
+        },
+        addWord:function() {
+            "use strict";
+            this.modal = {
+                title:`add `,
+                newWord:``,
+                assoc:``,
+                connection:``,
+                meaning:``,
+                url:``,
             }
-            makeEditBtns();
-        }
-
-
-        let limit = 10, start = 10;
-
-        function loadMore() {
-
+        },
+        getWords:function () {
+            "use strict";
             let ajax = new Ajax({
-                url: `${url.home()}/`,
-                method: 'post',
-                data: {
-                    start: start,
-                    limit: limit
-                }
+                url: `${url.home()}/api/wordsJson/${this.start}/${this.limit}/${this.sort}/${this.order}`,
             });
 
-            ajax.ok.then((data) => {
-                "use strict";
-                start += limit;
-                showSearchResult(data, 'append');
+            ajax.ok.then((data)=>{
+                this.sharedData.words = JSON.parse(data) ;
 
-            })
+                this.update();
+            }).catch((err)=>{
+                console.log(err)
+            });
 
-        }
-
-
-        function update() {
-            "use strict";
-            $(document).ready(function () {
-                makeEditBtns();
-                $(document).find('.edit-word').on('click', function (e) {
-                    e.preventDefault();
-                    showEditWordModal(e);
-                });
-            })
-
-
-        }
-
-        function init() {
-            "use strict";
-            makeEditBtns();
+        },
+        update:function () {
+            this.$forceUpdate();
+            setTimeout(()=>{
+                this.makeEditBtns();
+            },1e2)
+        },
+        summernote:function () {
             $('.details textarea').summernote({
                 dialogsInBody: true,
                 codemirror: { // codemirror options
@@ -210,63 +203,55 @@ global.david = (function () {
 
                 ]
             });
+        },
+        getUser:function () {
+           new Ajax({
+                url:`${url.home()}/admin/dashboard/getuser`,
+                method:"post",
+                data:{uuuser:true}
+            }).ok.then(d => {
+                "use strict";
+                this.admin.user = JSON.parse(d);
+            }).catch(err => {
+                "use strict";
+                console.log(err)
+            })
+        },
+        // sorting & ordering
+        sortAndOrder:function (sort) {
+            this.sort=sort;
+            this.order=this.order === 'asc' ? 'desc' : 'asc';
+            this.getWords();
+        },
+        search:function(){
+            "use strict";
+            new Ajax({
+                url: decodeURIComponent(`${url.home()}/api/search/${this.whereSearch}`),
+                method:"post",
+                data:{
+                    word:this.wordSearch
+                }
+            }).ok.then(res=>{
+                this.sharedData.words = JSON.parse(res);
+                console.log(res);
 
+            }).catch(err=>
+            {
+                console.log(err);
+                this.getWords();
+            })
         }
-        init();
 
-        $(document).on('click', v.editWord, function (e) {
-            e.preventDefault();
-            showEditWordModal(e);
-        });
-
-        $(document).on('keyup', v.search, function () {
-
-            let ajax = new Ajax({
-                url: `${url.home()}/welcome/searchResult/`,
-                data: {search: $(v.search).val()},
-                method: "post"
-            });
-
-
-            ajax.ok.then(d => {
-                showSearchResult(d)
-            }).catch(err => console.log(err))
-
-        });
-
-        $(document).on('click', v.loadMore, function () {
-            loadMore();
-        });
-
-        $(document).on('click', v.delete, function (e) {
-            confirmDelete(e);
-        });
-
-        $(document).on('click', v.det_save, function (e) {
-            e.preventDefault();
-
-           let saveDetails = new Ajax({
-               url:`${url.home()}/detailsSave/${url.arr(2)}`,
-               data:{
-                   text: $('.details textarea').summernote('code'),
-                   words_id: url.arr(2)
-               },
-               method:'post'
-           });
-
-
-           saveDetails.ok.then(function(data){
-               console.log(data);
-               $('.details textarea').summernote('destroy');
-               init();
-           }).catch(function (err) {
-               console.log(err)
-           })
-
-        });
-
-        return {dom, Ajax}
-    })(view);
-
-    return {view, octopus, f, Funcs, url, dom}
-})();
+    },
+    created:function (){
+        "use strict";
+        console.log('created');
+    },
+    mounted:function() {
+        "use strict";
+        console.log('mounted');
+        this.getWords();
+        this.summernote();
+        this.getUser();
+    }
+});

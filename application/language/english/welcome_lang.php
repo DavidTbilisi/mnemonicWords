@@ -7,7 +7,8 @@ $lang['close'] = 'close';
 
 // NAV
 $lang['nav'] = 'nav';
-
+// TOP LINE
+$lang['sort_by'] = 'Sort by';
 
 // READ
 $lang['word'] = 'word';

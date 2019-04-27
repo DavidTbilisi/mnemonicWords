@@ -15,4 +15,6 @@ class MY_Controller extends CI_Controller{
 		parent::__construct();
 		$this->data['site_name'] = config_item('site_name');
 	}
+
+
 }

@@ -65,7 +65,7 @@ protected $timestamps = FALSE;
 	public function delete( $id ) {
 		$filter = $this->primary_filters;
 		$id = $filter($id);
-		if (!id) {
+		if (!$id) {
 			return false;
 		}
 

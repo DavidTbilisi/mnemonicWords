@@ -4,7 +4,7 @@
 
 <div class="details">
     <div class="row mt-5 mb-5 pt-5">
-        <div class="col-sm-12 col-md-6 col-lg-3 border">სიტყვა: <span class="summernote"><?= $word->newWord ?></span></div>
+        <div class="col-sm-12 col-md-6 col-lg-3 border">სიტყვა: <span class="summernote"><?= $word->new_word ?></span></div>
         <div class="col-sm-12 col-md-6 col-lg-3 border">ასოციაცია: <span class="summernote"><?= $word->assoc ?></span></div>
         <div class="col-sm-12 col-md-6 col-lg-3 border">კავშირი: <span class="summernote"><?= $word->connection ?></span></div>
         <div class="col-sm-12 col-md-6 col-lg-3 border">მნიშვნელობა: <span class="summernote"><?= $word->meaning ?></span></div>

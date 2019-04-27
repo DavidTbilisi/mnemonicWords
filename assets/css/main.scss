@@ -10,7 +10,8 @@
 // $color3: #eba194;
 // $color4: #dac6ca;
 // $color5: #32639d;
-
+[v-cloak] > * { display:none }
+[v-cloak]::before { content: "loading…" }
 $color1: #E91E63;
 $color2: #FFEB3B;
 $color3: #212121;
@@ -37,10 +38,12 @@ $color5: #BDBDBD;
 }
 
 
-html, body{
+html, body, input, button{
   font-size: 1.8rem;
 }
-
+#root{
+  margin: 0 -15px;
+}
 
 a,
 a:hover {
@@ -109,17 +112,18 @@ a:hover {
 
 .login {
   font-size: 1.6rem;
-  position: relative;
-  width: 100%;
-  height: 100%;
+  background-color: #3b4550;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &-title{
+    text-align:center;
+  }
   &-block {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    max-width: 300px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -25%);
+    padding:15px;
+    width: 25%;
+    border: 5px solid #979797;
+    background: #ffffffe0;
+    border-radius: 5px;
     input, button {
       font-size: 1.6rem;
     }
@@ -227,63 +231,9 @@ a:hover {
   padding: 6px 0;
 }
 
-// LOAD MORE BUTTON
-.load_more button {
-  background-color: var(--color1);
-  position: relative;
-  float: left;
-  left: 50%;
-  transform: translateX(-50%);
-  border: none;
-  border-radius: 3px;
-  padding: 15px 29px;
-  font-size: 1.6rem;
-  margin: 45px 0;
-  &:hover {
-    background-color: darken($color1, 10%) !important;
-  }
-  &:active {
-    background-color: darken($color1, 10%) !important;
-  }
-  &:focus {
-    background-color: darken($color1, 10%) !important;
-  }
+.ligin{
+
 }
 
-.center {
-  position: relative;
-  float: left;
-  left: 50%;
-  transform: translateX(-50%);
-}
 
-// LOGO
-.logo {
-  display: block;
-  position: relative;
-  width: 180px;
-  img {
-    display: block;
-    width: 100%;
-  }
-}
-
-// SEARCH
-#search {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  top: 0px;
-  width: 220px;
-  input {
-    display: block;
-    width: 100%;
-    padding: 17px 15px;
-    margin: 0 !important;
-    font-size: 1.4rem;
-  }
-}
-
-body {
-  margin-top: 55px;
-}
+@import "admin";

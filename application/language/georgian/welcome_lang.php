@@ -7,7 +7,8 @@ $lang['close'] = 'დახურვა';
 
 // NAV
 $lang['nav'] = 'ნავიგაცია';
-
+// TOP LINE
+$lang['sort_by'] = 'დახარისხება';
 
 // READ
 $lang['word'] = 'სიტყვა';

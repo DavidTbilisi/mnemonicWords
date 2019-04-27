@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined( 'BASEPATH' ) OR exit( 'No direct script access allowed' );
 
 /*
 | -------------------------------------------------------------------------
@@ -51,18 +51,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 
-$route['save'] = 'welcome/save';
-$route['save/(:num)'] = 'welcome/save/$1';
-$route['delete/(:num)'] = 'welcome/delete/$1';
-$route['details/(:num)'] = 'welcome/details/$1';
+$route['save']               = 'welcome/save';
+$route['save/(:num)']        = 'welcome/save/$1';
+$route['delete/(:num)']      = 'welcome/delete/$1';
+$route['details/(:num)']     = 'welcome/details/$1';
 $route['detailsSave/(:num)'] = 'welcome/detailsSave/$1';
 
+$route['manage']       = 'admin/dashboard';
+$route['settings']     = 'admin/dashboard/settings';
+$route['users']        = 'admin/dashboard/users';
+$route['users/(:num)'] = 'admin/dashboard/users/$1';
+
 $route['register'] = 'auth/create_user';
-$route['login'] = 'auth/login';
-$route['logout'] = 'auth/logout';
+$route['login']    = 'auth/login';
+$route['logout']   = 'auth/logout';
 
 
 $route['migrate'] = 'admin/migration';
-$route['import'] = 'welcome/import';
-$route['404_override'] = 'welcome';
-$route['translate_uri_dashes'] = FALSE;
+$route['import']  = 'io_csv/import';
+$route['export']  = 'io_csv/export';
+//$route['404_override'] = 'welcome';
+$route['translate_uri_dashes'] = false;
