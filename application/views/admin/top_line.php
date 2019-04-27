@@ -3,7 +3,12 @@
 	<div class="col search">
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-				<span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                <select name="" id="">
+                    <option value="new_word">new word</option>
+                    <option value="assoc">assoc</option>
+                    <option value="connection">connection</option>
+                    <option value="meaning">meaning</option>
+                </select>
 			</div>
 			<input type="text" class="form-control" placeholder="saerch" aria-label="saerch" aria-describedby="basic-addon1">
 		</div>

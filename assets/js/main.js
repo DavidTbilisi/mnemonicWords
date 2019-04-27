@@ -48,6 +48,8 @@ global.v = new Vue({
        sharedData,
         limit:10,
         start:0,
+        whereSearch:"new_word",
+        wordSearch:"",
         sort:'id',
         order:'desc',
         modal:{
@@ -221,6 +223,24 @@ global.v = new Vue({
             this.order=this.order === 'asc' ? 'desc' : 'asc';
             this.getWords();
         },
+        search:function(){
+            "use strict";
+            new Ajax({
+                url: decodeURIComponent(`${url.home()}/api/search/${this.whereSearch}`),
+                method:"post",
+                data:{
+                    word:this.wordSearch
+                }
+            }).ok.then(res=>{
+                this.sharedData.words = JSON.parse(res);
+                console.log(res);
+
+            }).catch(err=>
+            {
+                console.log(err);
+                this.getWords();
+            })
+        }
 
     },
     created:function (){

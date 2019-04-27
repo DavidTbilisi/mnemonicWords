@@ -6,7 +6,6 @@ class Api extends Rest_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->ui = $this->session->userdata('user_id');
-
 	}
 
 	public function index() {
@@ -52,4 +51,19 @@ class Api extends Rest_Controller {
 
 		return $this->json($words);
 	}
+
+	public function search( $where='new_word' ) {
+		$word = $this->input->post("word");
+		if ($word) {
+		$this->db->from("words");
+		$this->db->like( $where, $word );
+		$words = ( $this->db->get() )->result();
+//		echo $this->db->last_query();
+		return $this->json($words);
+		}
+		return null;
+
+	}
+
+
 }

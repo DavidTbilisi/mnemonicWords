@@ -17,7 +17,7 @@ $lang['connection'] = 'კავშირი';
 $lang['meaning'] = 'მნიშვნელობა';
 
 $lang['not_found'] = 'ასეთი სიტყვა ვერ მოიძებნა';
-$lang['load_more'] = 'მეტი';
+$lang['load_more'] = 'მეტის ჩატვირთვა';
 $lang['all_words'] = 'სულ';
 
 
