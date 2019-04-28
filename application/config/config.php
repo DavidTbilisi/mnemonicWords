@@ -10,14 +10,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |--------------------------------------------------------------------------
 |
 */
-function __autoload($class) {
+
+// function __autoload($class) {
+// 	if (substr($class,0,3) !== 'CI_') {
+// 		if (file_exists($file = APPPATH . 'libraries/' . $class . '.php')) {
+// //			echo $file; die;
+// 			include_once $file;
+// 		}
+// 	}
+// }
+
+spl_autoload_register(function($class) {
 	if (substr($class,0,3) !== 'CI_') {
 		if (file_exists($file = APPPATH . 'libraries/' . $class . '.php')) {
-//			echo $file; die;
-			include $file;
+			// echo $file; // die;
+			include_once $file;
 		}
 	}
-}
+});
 
 
 
@@ -52,6 +62,7 @@ $root = $root[count($root)-1];
 
 if($_SERVER['SERVER_NAME'] == 'localhost') {
 	$config['base_url'] = "http://localhost/{$root}/";
+	// die($config['base_url']);
 } else{
 	$config['base_url'] = 'http://getsite.ge/learnwords/';
 }
