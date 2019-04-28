@@ -5,9 +5,7 @@
 </div>
 <hr>
 <div>
-<?php $this->load->view( 'add-word' ) ?>
-    <span class="words-count"><?=$this->lang->line('all_words');?>: <?=$words_count?></span>
-</div>
+
 <div class="language-container container">
     <div class="row">
         <div class="col">
@@ -20,8 +18,6 @@
 <div class="language-container container">
     <div class="row">
         <div class="col">
-
-
             <div class="words-mobile">
                 <div class="row">
                     <div class="col-1 hv-center">
@@ -44,14 +40,18 @@
 
                     <div v-for="( word, counter ) in sharedData.words"
                          class="row lang-item-container position-relative">
+						 
                         <div class="col-1 hv-center">
+
                             <a :href="`<?= base_url( "/details/" ) ?>${word.id}`">
                                 <div v-cloak class="circle hv-center">
                                     {{++counter}}
                                 </div>
                             </a>
+
                             <!--<input class="ml-5" type="checkbox">-->
                         </div>
+
                         <div v-cloak class="col">
                             <ul class="lang-items list-unstyled">
                                 <li> {{word.new_word}}</li>
@@ -60,7 +60,9 @@
                                 <li> {{word.meaning}}</li>
                             </ul>
                         </div>
+
                         <div class="covered" :data-id="word.id">
+
                             <a class="edit-word"
                                @click="showEditWordModal($event,word.id)"
                                data-toggle="modal"
@@ -73,6 +75,7 @@
                                :href="`<?php echo site_url() . '/delete/' ?>${word.id}`">
                                 <i class="icon-trash"></i>
                             </a>
+
                         </div>
                     </div>
 

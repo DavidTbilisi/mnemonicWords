@@ -8,7 +8,7 @@ class Welcome extends Front_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->timestemp = "Y-m-d G:i:s";
-		$this->load->library( 'rb' );
+//		$this->load->library( 'rb' );
 		$this->load->model( 'users_m' );
 		$this->load->model( 'words_m' );
 
@@ -35,13 +35,13 @@ class Welcome extends Front_Controller {
 
 
 
-		$this->load->view( 'incs/header', [ "data" => $this->data ] );
-		$this->load->view( 'read', [
+		$this->load->view( 'incs/header', array("data" => $this->data));
+		$this->load->view( 'read', array(
 			'words'       => $words,
 			'isLogged'    => $this->ion_auth->logged_in(),
 			'start'       => $start,
 			'words_count' => count($this->words_count),
-		] );
+		));
 		$this->load->view( 'incs/footer' );
 	}
 
@@ -58,8 +58,6 @@ class Welcome extends Front_Controller {
 
 	}
 
-
-
 	public function wordJson( $id = null) {
 
 		$this->db->from( 'words' );
@@ -71,7 +69,8 @@ class Welcome extends Front_Controller {
 		             ->set_output( json_encode( $words, JSON_UNESCAPED_UNICODE ) )
 		             ->set_status_header( 200 );
 	}
-	public function returnJson( $data = null, $no_data = [ 'error' => '404' ] ) {
+
+	public function returnJson( $data = null, $no_data = array('error' => '404')) {
 		$this->output->set_content_type( 'application/json' );
 		if ( $data != null )
 		{
@@ -88,14 +87,12 @@ class Welcome extends Front_Controller {
 
 	}
 
-
-
 	// SEARCH
 	public function searchResult( $search = null ) {
 		$word  = $search == null ? $this->input->post( 'search' ) : $search;
 		$words = json_decode( $this->search( $word ) );
-		$this->load->view( 'incs/header', [ "data" => $this->data ] );
-		$this->load->view( 'read', [ 'words' => $words, 'isLogged' => $this->ion_auth->logged_in(), ] );
+		$this->load->view( 'incs/header', array("data" => $this->data));
+		$this->load->view( 'read', array('words' => $words, 'isLogged' => $this->ion_auth->logged_in(),));
 		$this->load->view( 'incs/footer' );
 	}
 	public function search( $search = null ) {
@@ -167,10 +164,9 @@ class Welcome extends Front_Controller {
 			// print_r($id);
 		}
 		$this->output->set_content_type( 'application/json' )
-		             ->set_output( json_encode( ['result'=>'deleted'], JSON_UNESCAPED_UNICODE ) )
+		             ->set_output( json_encode( array('result'=>'deleted'), JSON_UNESCAPED_UNICODE ) )
 		             ->set_status_header( 200 );
 	}
-
 	public function wordSet(  ) {
 			$this->timestemp = date('Y-m-d G:i:s');
 
@@ -190,7 +186,7 @@ class Welcome extends Front_Controller {
 		$post = $this->input->post();
 		if ( $post['words_id'] )
 		{
-			$data = ['text' => $post["text"], 'words_id'=> $id];
+			$data = array('text' => $post["text"], 'words_id'=> $id);
 
 			$this->db->from('details');
 			$this->db->where('words_id',$id);
@@ -223,9 +219,9 @@ class Welcome extends Front_Controller {
 
 		$word = $query->row();
 
-		$this->load->view( 'incs/header',[ "data" => $this->data ]  );
+		$this->load->view( 'incs/header', array("data" => $this->data));
 
-		$this->load->view( 'details', ['word'=>$word, 'isLogged' => $this->ion_auth->logged_in()]);
+		$this->load->view( 'details', array('word'=>$word, 'isLogged' => $this->ion_auth->logged_in()));
 
 		$this->load->view( 'incs/footer' );
 
