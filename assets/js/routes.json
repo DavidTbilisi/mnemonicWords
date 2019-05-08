@@ -1,1 +1,0 @@
-{"save":"welcome\/save","save\/(:num)":"welcome\/save\/$1","delete\/(:num)":"welcome\/delete\/$1","register":"auth\/create_user","login":"auth","migrate":"admin\/migration","import":"welcome\/import","404_override":""}
