@@ -5,13 +5,15 @@
             <span uk-navbar-toggle-icon></span> <span class="uk-margin-small-left" >Menu</span>
         </a>
     </div>
-    <div class="uk-navbar-right">
 
+
+    <div class="uk-navbar-right">
         <ul class="uk-navbar-nav">
             <li class="uk-active"><a href="#">Active</a></li>
             <li>
-                <a href="#">ხშირად დასმული კითხვები</a>
+                <a href="#">Parent</a>
                 <div class="uk-navbar-dropdown">
+                    <p class="uk"></p>
                     <ul class="uk-nav uk-navbar-dropdown-nav">
                         <li class="uk-active"><a href="#">Active</a></li>
                         <li><a href="#">Item</a></li>
@@ -23,6 +25,17 @@
         </ul>
     </div>
 </nav>
+
+<ul class="uk-navbar-nav uk-navbar-transparent">
+    <li>
+        <a href="#">a</a>
+        <div class="uk-navbar-dropdown">
+            <ul class="uk-nav uk-navbar-dropdown-nav">...</ul>
+        </div>
+    </li>
+</ul>
+
+
 
 <div id="offcanvas-nav" uk-offcanvas="overlay: true; mode: push">
     <div class="uk-offcanvas-bar">
